@@ -1,26 +1,327 @@
 @import "tailwindcss";
+@import "./pattern.css";
 
+/* Default theme (fallback) */
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #1a2e3b;
+  --accent: #1a2e3b;
+  --secondary: #ffffff;
+  --card-bg: rgba(255, 255, 255, 0.8);
+  --card-border: rgba(26, 46, 59, 0.2);
+  --theme-applied: 'default';
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* Teal theme */
+.teal {
+  --background: #1a2e3b;
+  --foreground: #e6d9c9;
+  --accent: #e6d9c9;
+  --secondary: #1a2e3b;
+  --card-bg: rgba(26, 46, 59, 0.7);
+  --card-border: rgba(230, 217, 201, 0.2);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Sage theme */
+.sage {
+  --background: #4a6c6f;
+  --foreground: #f0f4e3;
+  --accent: #f0f4e3;
+  --secondary: #4a6c6f;
+  --card-bg: rgba(74, 108, 111, 0.7);
+  --card-border: rgba(240, 244, 227, 0.2);
+}
+
+/* Terra theme */
+.terra {
+  --background: #b85042;
+  --foreground: #f2e8cf;
+  --accent: #f2e8cf;
+  --secondary: #b85042;
+  --card-bg: rgba(184, 80, 66, 0.7);
+  --card-border: rgba(242, 232, 207, 0.2);
+}
+
+/* Mint theme */
+.mint {
+  --background: #4f6d7a;
+  --foreground: #c0d6df;
+  --accent: #c0d6df;
+  --secondary: #4f6d7a;
+  --card-bg: rgba(79, 109, 122, 0.7);
+  --card-border: rgba(192, 214, 223, 0.2);
+}
+
+/* Olive theme */
+.olive {
+  --background: #606c38;
+  --foreground: #fefae0;
+  --accent: #fefae0;
+  --secondary: #606c38;
+  --card-bg: rgba(96, 108, 56, 0.7);
+  --card-border: rgba(254, 250, 224, 0.2);
+}
+
+/* Plum theme */
+.plum {
+  --background: #5e548e;
+  --foreground: #f9f4f5;
+  --accent: #f9f4f5;
+  --secondary: #5e548e;
+  --card-bg: rgba(94, 84, 142, 0.7);
+  --card-border: rgba(249, 244, 245, 0.2);
+}
+
+/* Improved transitions for smooth theme changes */
+html {
+  transition: color-scheme 0.5s ease;
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Inter', sans-serif;
+  transition: background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease;
+  position: relative;
+}
+
+/* Remove the existing ::before and ::after patterns */
+body::before,
+body::after {
+  content: none;
+}
+
+/* Pattern container base styles - reduce overall opacity */
+.pattern-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0.2;
+  /* Reduced from 0.3 to 0.2 for more subtlety */
+  color: var(--accent);
+}
+
+/* Theme-specific patterns - make them smaller and more subtle */
+html.teal .pattern-container {
+  /* Starry night pattern - smaller dots, more spread out */
+  background-image:
+    radial-gradient(circle at 25% 25%, currentColor 0.8px, transparent 0.8px),
+    radial-gradient(circle at 75% 75%, currentColor 1.2px, transparent 1.2px),
+    radial-gradient(circle at 25% 75%, currentColor 1px, transparent 1px),
+    radial-gradient(circle at 75% 25%, currentColor 0.8px, transparent 0.8px);
+  background-size: 40px 40px;
+  /* Reduced from 60px to 40px */
+}
+
+html.sage .pattern-container {
+  /* Leaf-like pattern - thinner lines */
+  background-image:
+    linear-gradient(45deg, transparent 49%, currentColor 49%, currentColor 51%, transparent 51%),
+    linear-gradient(-45deg, transparent 49%, currentColor 49%, currentColor 51%, transparent 51%);
+  background-size: 24px 24px;
+  /* Reduced from 30px to 24px */
+  background-position: 0 0, 12px 12px;
+}
+
+html.terra .pattern-container {
+  /* Terracotta tile pattern - smaller grid */
+  background-image:
+    linear-gradient(currentColor 1px, transparent 1px),
+    linear-gradient(90deg, currentColor 1px, transparent 1px),
+    linear-gradient(rgba(255, 255, 255, .2) 0.5px, transparent 0.5px),
+    linear-gradient(90deg, rgba(255, 255, 255, .2) 0.5px, transparent 0.5px);
+  background-size: 30px 30px, 30px 30px, 6px 6px, 6px 6px;
+  /* Reduced from 40px to 30px */
+  background-position: -1px -1px, -1px -1px, -0.5px -0.5px, -0.5px -0.5px;
+}
+
+html.mint .pattern-container {
+  /* Waves pattern - smaller and more subtle */
+  background-image:
+    radial-gradient(circle at 100% 50%, transparent 20%, currentColor 21%, currentColor 22%, transparent 23%, transparent 30%, currentColor 31%, currentColor 32%, transparent 33%),
+    radial-gradient(circle at 0% 50%, transparent 20%, currentColor 21%, currentColor 22%, transparent 23%, transparent 30%, currentColor 31%, currentColor 32%, transparent 33%);
+  background-size: 40px 80px;
+  /* Reduced from 60px 120px to 40px 80px */
+  background-position: 0 0, 0 0;
+  opacity: 0.15;
+  /* Further reduced opacity */
+}
+
+html.olive .pattern-container {
+  /* Organic pattern - smaller crosshatch */
+  background-image:
+    repeating-linear-gradient(45deg, currentColor 0, currentColor 0.5px, transparent 0.5px, transparent 50%),
+    repeating-linear-gradient(-45deg, currentColor 0, currentColor 0.5px, transparent 0.5px, transparent 50%);
+  background-size: 16px 16px;
+  /* Reduced from 20px to 16px */
+}
+
+html.plum .pattern-container {
+  /* Geometric pattern - simplified and smaller */
+  background-image:
+    linear-gradient(30deg, currentColor 8%, transparent 8.5%, transparent 91.5%, currentColor 92%, currentColor),
+    linear-gradient(150deg, currentColor 8%, transparent 8.5%, transparent 91.5%, currentColor 92%, currentColor),
+    linear-gradient(30deg, currentColor 8%, transparent 8.5%, transparent 91.5%, currentColor 92%, currentColor),
+    linear-gradient(150deg, currentColor 8%, transparent 8.5%, transparent 91.5%, currentColor 92%, currentColor);
+  background-size: 30px 52px;
+  /* Reduced from 40px 70px to 30px 52px */
+  background-position: 0 0, 0 0, 15px 26px, 15px 26px;
+  opacity: 0.15;
+  /* Further reduced opacity */
+}
+
+html:not(.teal):not(.sage):not(.terra):not(.mint):not(.olive):not(.plum) .pattern-container {
+  /* Light theme paper texture - even more subtle */
+  background-image:
+    linear-gradient(90deg, rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+    linear-gradient(rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+  background-size: 16px 16px;
+  /* Reduced from 20px to 16px */
+  color: var(--foreground);
+}
+
+/* Smooth transitions for all elements */
+*,
+*::before,
+*::after {
+  transition: background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease, opacity 0.3s ease, transform 0.3s ease;
+}
+
+a {
+  color: var(--accent);
+  transition: opacity 0.2s ease;
+}
+
+a:hover {
+  opacity: 0.8;
+}
+
+.card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 4px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.btn {
+  background-color: var(--accent);
+  color: var(--secondary);
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-weight: 500;
+  transition: opacity 0.2s ease, background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn:hover {
+  opacity: 0.9;
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.section-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  color: var(--accent);
+  transition: color 0.3s ease;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(20px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.6s ease forwards;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.6s ease forwards;
+}
+
+.animate-slide-in-right {
+  animation: slideInRight 0.6s ease forwards;
+}
+
+.animate-delay-100 {
+  animation-delay: 100ms;
+}
+
+.animate-delay-200 {
+  animation-delay: 200ms;
+}
+
+.animate-delay-300 {
+  animation-delay: 300ms;
+}
+
+.animate-delay-400 {
+  animation-delay: 400ms;
+}
+
+.animate-delay-500 {
+  animation-delay: 500ms;
+}
+
+/* Image hover effects */
+.image-container {
+  overflow: hidden;
+}
+
+.image-container img {
+  transition: transform 0.5s ease;
+}
+
+.card:hover .image-container img {
+  transform: scale(1.05);
 }
