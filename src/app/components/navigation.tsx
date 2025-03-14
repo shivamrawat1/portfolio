@@ -20,8 +20,8 @@ export default function Navigation() {
                 <nav className="flex gap-8">
                     <Link href="/" className={getLinkClass('/')}>Home</Link>
                     <Link href="/about" className={getLinkClass('/about')}>About</Link>
-                    <Link href="/blog" className={getLinkClass('/blog')}>Thoughts</Link>
-                    <Link href="/projects" className={getLinkClass('/projects')}>Archive</Link>
+                    <Link href="/blog" className={getLinkClass('/blog')}>Blogs</Link>
+                    <Link href="/projects" className={getLinkClass('/projects')}>Projects</Link>
                 </nav>
             </div>
         </div>
