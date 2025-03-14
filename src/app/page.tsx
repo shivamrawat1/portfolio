@@ -6,44 +6,25 @@ import Link from "next/link";
 import DesktopIllustration from "./components/desktop-illustration";
 import ThemeSelector from "./components/theme-selector";
 import PlaceholderImage from "./components/placeholder-image";
-
-// Sample data
-const featuredProjects = [
-  {
-    id: 1,
-    title: "Niche Web Project",
-    description: "A custom web application with handcrafted CSS and unique illustrations.",
-    imageUrl: "/images/project1.jpg",
-    link: "/projects/1"
-  },
-  {
-    id: 2,
-    title: "CSS Experiment",
-    description: "Exploring the boundaries of what's possible with modern CSS techniques.",
-    imageUrl: "/images/project2.jpg",
-    link: "/projects/2"
-  },
-  {
-    id: 3,
-    title: "Illustration Work",
-    description: "Custom illustrations for digital platforms and print media.",
-    imageUrl: "/images/project3.jpg",
-    link: "/projects/3"
-  }
-];
-
-const recentPosts = [
-  {
-    id: "first-post",
-    title: "The Web is Better When It's Weird",
-    excerpt: "Thoughts on keeping the internet a creative, experimental space.",
-    date: "2023-06-01",
-    link: "/blog/first-post"
-  }
-];
+import { useContent } from "./context/ContentContext";
 
 export default function Home() {
   const router = useRouter();
+  const { content, isLoading } = useContent();
+
+  if (isLoading) {
+    return (
+      <div className="container mx-auto py-16 px-4 text-center">
+        <p>Loading content...</p>
+      </div>
+    );
+  }
+
+  // Get featured projects (first 3)
+  const featuredProjects = content.projects.slice(0, 3);
+
+  // Get recent posts (first 1)
+  const recentPosts = content.blogPosts.slice(0, 1);
 
   return (
     <div className="container mx-auto py-16 px-4">
@@ -53,10 +34,10 @@ export default function Home() {
       {/* Hero Section */}
       <div className="mb-16 max-w-3xl mx-auto text-center animate-fade-in">
         <h1 className="text-4xl md:text-5xl font-bold mb-6">
-          Niche web projects, illustration, & handcrafted CSS
+          {content.home.heroTitle}
         </h1>
         <p className="text-xl opacity-80 mb-10 leading-relaxed animate-slide-up animate-delay-200">
-          Creating unique digital experiences with attention to detail and a focus on creativity.
+          {content.home.heroSubtitle}
         </p>
       </div>
 

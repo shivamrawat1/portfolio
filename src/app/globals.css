@@ -216,9 +216,8 @@ a:hover {
   background-color: var(--accent);
   color: var(--secondary);
   padding: 0.5rem 1rem;
-  border-radius: 4px;
-  font-weight: 500;
-  transition: opacity 0.2s ease, background-color 0.3s ease, color 0.3s ease;
+  border-radius: 0.25rem;
+  transition: opacity 0.2s;
 }
 
 .btn:hover {
@@ -227,9 +226,16 @@ a:hover {
 
 .btn-outline {
   background-color: transparent;
-  color: var(--accent);
   border: 1px solid var(--accent);
-  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+  color: var(--accent);
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  transition: background-color 0.2s, opacity 0.2s;
+}
+
+.btn-outline:hover {
+  background-color: var(--accent);
+  background: 0.1;
 }
 
 .section-title {
@@ -324,4 +330,40 @@ a:hover {
 
 .card:hover .image-container img {
   transform: scale(1.05);
+}
+
+/* Card styles */
+.card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+/* Form input styles */
+input,
+textarea {
+  background-color: transparent;
+  border: 1px solid var(--accent);
+  border: 0.2;
+  border-radius: 0.25rem;
+  padding: 0.5rem 0.75rem;
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+/* Add these CSS variables to your :root */
+:root {
+  --card-bg: rgba(255, 255, 255, 0.05);
+  --card-border: rgba(255, 255, 255, 0.1);
+}
+
+/* Dark mode adjustments */
+.dark {
+  --card-bg: rgba(0, 0, 0, 0.2);
+  --card-border: rgba(255, 255, 255, 0.1);
 }

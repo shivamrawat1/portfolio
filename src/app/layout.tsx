@@ -1,6 +1,7 @@
 import "./globals.css";
 import Navigation from "./components/navigation";
 import { Providers } from "./providers";
+import EditModeToggle from "./components/edit-mode-toggle";
 import Script from "next/script";
 import { useEffect, useState } from "react";
 
@@ -49,6 +50,7 @@ export default function RootLayout({
               <p className="text-sm opacity-70">© 2023 Portfolio. All rights reserved.</p>
             </div>
           </footer>
+          <EditModeToggle />
         </Providers>
       </body>
     </html>
