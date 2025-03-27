@@ -1,68 +1,180 @@
-.card {
+.project_card {
+    background-color: #FFF7F4;
     display: flex;
     flex-direction: column;
-    height: 100%;
-    border-left: 1px solid #000;
-    border-top: 1px solid #000;
-    border-bottom: 1px solid #000;
+    height: calc(100% - 0rem);
+    /* Account for parent padding */
+    width: 320px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #000;
 }
 
-.title_column {
-    width: 100%;
-    padding: 1rem;
-    border-bottom: 1px solid #000;
+.project_card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Top row with title and image */
+.top_row {
     display: flex;
-    justify-content: center;
+    height: 55%;
+    /* Changed from fixed height to 60% */
+    border-bottom: 1px solid #000;
+    min-height: unset;
+    max-height: unset;
+}
+
+.issue_title {
+    width: 40px;
+    /* Fixed width */
+    min-width: unset;
+    /* Remove min-width */
+    padding: 0.5rem 0.25rem;
+    font-size: 1.2rem;
+    margin: 0;
+    display: flex;
     align-items: center;
-}
-
-.title {
-    writing-mode: vertical-rl;
+    justify-content: center;
+    writing-mode: vertical-lr;
     transform: rotate(180deg);
-    font-family: 'Playfair Display', serif;
-    font-size: 1.5rem;
-    text-align: center;
-    height: 150px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }
 
-.content_area {
+.image_container {
+    position: relative;
     flex: 1;
-    display: flex;
-    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+}
+
+.project_image {
+    object-fit: cover !important;
+    object-position: center !important;
 }
 
 .view_button_container {
-    padding: 1rem;
-    display: flex;
-    justify-content: flex-end;
-    border-bottom: 1px solid #000;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    z-index: 2;
+    background: #FFF7F4;
+    border-top: 1px solid #000;
+    border-left: 1px solid #000;
 }
 
 .view_button {
-    background: none;
-    border: 1px solid #000;
-    padding: 0.5rem 1rem;
+    background: transparent;
+    border: none;
+    padding: 0.75rem 1rem;
     cursor: pointer;
-    font-size: 0.9rem;
+    font-size: 1rem;
+    font-weight: 500;
 }
 
-.description_area {
-    padding: 1rem;
-    flex: 1;
+/* Bottom row with content and category */
+.bottom_row {
     display: flex;
     flex-direction: column;
+    padding: 0.5rem;
+    height: 35%;
+    /* Changed from flex: 1 to 40% */
+    min-height: 0;
+    /* Add this to allow proper flex shrinking */
+}
+
+.content_section {
+    margin-bottom: 0.5rem;
 }
 
 .description {
+    margin: 0 0 0.5rem 0;
     font-size: 0.9rem;
-    line-height: 1.4;
-    margin-bottom: 1rem;
+    line-height: 1.3;
+    max-height: 6rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    line-clamp: 4;
+    /* Add standard property for compatibility */
+    -webkit-box-orient: vertical;
 }
 
 .divider {
-    width: 100%;
-    height: 1px;
-    background-color: #000;
     border: none;
+    border-top: 1px solid #000;
+    margin: 0.75rem 0;
+    /* Reduced margin */
+    width: 100%;
+}
+
+.techstack_section {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+    margin: 0.5rem 0;
+}
+
+.tech_item {
+    font-size: 0.8rem;
+    /* Added smaller font size */
+    padding: 0.25rem 0.5rem;
+    background: #000;
+    color: #FFF7F4;
+    border-radius: 4px;
+}
+
+.author_name {
+    display: none;
+    /* Hide the old style */
+}
+
+.category_section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin-top: auto;
+    /* Push to bottom */
+    padding-top: 0.5rem;
+}
+
+.category {
+    margin: 0;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    /* Slightly smaller font */
+}
+
+.date {
+    margin: 0;
+    font-size: 0.9rem;
+    /* Slightly smaller font */
+    text-align: right;
+}
+
+/* Add responsive grid layout to the projects container */
+/* This should be added to your projects.module.css file */
+
+
+/* Media queries for responsive layout */
+@media (min-width: 48rem) {
+    .projects_grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 75rem) {
+    .projects_grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Add a new divider between tech stack and category section */
+.bottom_divider {
+    border: none;
+    border-top: 1px solid #000;
+    margin: 0.1rem 0;
+    width: 100%;
 }

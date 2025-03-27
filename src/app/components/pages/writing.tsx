@@ -4,7 +4,12 @@ import styles from "../../styles/pages/writing.module.css";
 import ArticleCard from "../article-card";
 import { useState, useEffect, useRef } from "react";
 
-export default function WritingPage() {
+// Add this prop to your component
+interface WritingPageProps {
+    updateCategoryHeader: (header: React.ReactNode) => void;
+}
+
+export default function WritingPage({ updateCategoryHeader }: WritingPageProps) {
     const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
     const [showFilterPopup, setShowFilterPopup] = useState(false);
     const [animationKey, setAnimationKey] = useState(0);
@@ -118,10 +123,10 @@ export default function WritingPage() {
         ? articles.filter(article => article.category === selectedCategory)
         : articles;
 
-    // Handle category click from article card
-    const handleCategoryClick = (category: string, event: React.MouseEvent) => {
-        event.preventDefault();
-        event.stopPropagation();
+    // Handle category click
+    const handleCategoryClick = (category: string, e: React.MouseEvent) => {
+        e.preventDefault();
+        e.stopPropagation();
 
         // Update animation key to trigger fresh animations
         setAnimationKey(prev => prev + 1);
@@ -173,55 +178,69 @@ export default function WritingPage() {
         console.log("Filtered articles:", filteredArticles.length);
     }, [selectedCategory, filteredArticles]);
 
-    return (
-        <div className={styles.writing_container}>
-            <div className={styles.category_header}>
-                <div className={styles.header_content}>
-                    <h2>WRITING</h2>
-                    <div className={styles.filter_container}>
-                        <div className={styles.filter_wrapper}>
-                            <button
-                                className={styles.filter_button}
-                                onClick={handleFilterClick}
-                                ref={filterButtonRef}
-                            >
-                                {selectedCategory ? `Filtered: #${selectedCategory}` : "Filter by Category"}
-                            </button>
+    // Create a header component to pass up to the main component
+    const categoryHeader = (
+        <div className={styles.category_header}>
+            <div className={styles.header_content}>
+                <h2>WRITING</h2>
+                <div className={styles.filter_container}>
+                    <div className={styles.filter_wrapper}>
+                        <button
+                            className={styles.filter_button}
+                            onClick={handleFilterClick}
+                            ref={filterButtonRef}
+                        >
+                            {selectedCategory ? `Filtered: #${selectedCategory}` : "Filter by Category"}
+                        </button>
 
-                            {showFilterPopup && (
-                                <div
-                                    className={styles.filter_popup}
-                                    ref={popupRef}
-                                >
-                                    <div className={styles.popup_header}>
-                                        <h3>Filter by Category</h3>
-                                    </div>
-                                    <div className={styles.categories_list}>
-                                        {categories.map(category => (
-                                            <div
-                                                key={category}
-                                                className={`${styles.category_item} ${selectedCategory === category ? styles.selected : ''}`}
-                                                onClick={(e) => handleCategoryClick(category, e)}
-                                            >
-                                                #{category}
-                                            </div>
-                                        ))}
-                                    </div>
+                        {showFilterPopup && (
+                            <div
+                                className={styles.filter_popup}
+                                ref={popupRef}
+                            >
+                                <div className={styles.popup_header}>
+                                    <h3>Filter by Category</h3>
                                 </div>
-                            )}
-                        </div>
-
-                        {selectedCategory && (
-                            <button
-                                className={styles.clear_filter}
-                                onClick={clearFilter}
-                            >
-                                ✕
-                            </button>
+                                <div className={styles.categories_list}>
+                                    {categories.map(category => (
+                                        <div
+                                            key={category}
+                                            className={`${styles.category_item} ${selectedCategory === category ? styles.selected : ''}`}
+                                            onClick={(e) => handleCategoryClick(category, e)}
+                                        >
+                                            #{category}
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
                         )}
                     </div>
+
+                    {selectedCategory && (
+                        <button
+                            className={styles.clear_filter}
+                            onClick={clearFilter}
+                        >
+                            ✕
+                        </button>
+                    )}
                 </div>
             </div>
+        </div>
+    );
+
+    // Update the parent component with our header
+    useEffect(() => {
+        updateCategoryHeader(categoryHeader);
+
+        // Clean up when component unmounts
+        return () => {
+            updateCategoryHeader(null);
+        };
+    }, [selectedCategory, showFilterPopup]);
+
+    return (
+        <div className={styles.writing_container}>
             <div className={styles.articles_grid} key={animationKey}>
                 {filteredArticles.map(article => (
                     <ArticleCard

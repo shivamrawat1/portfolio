@@ -87,6 +87,8 @@ body {
   font-family: 'Inter', sans-serif;
   transition: background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease;
   position: relative;
+  overflow: hidden;
+  height: 100vh;
 }
 
 /* Remove the existing ::before and ::after patterns */
@@ -404,4 +406,32 @@ h6 {
 
 button {
   font-family: inherit;
+}
+
+/* Add this to your globals.css */
+.sticky-nav-container {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: #FFF7F4;
+  width: 100%;
+}
+
+.sticky-category-header {
+  border-top: 1px solid #000;
+  border-bottom: 1px solid #000;
+  background-color: #FFF7F4;
+  padding: 0.5rem 0;
+}
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+}
+
+main {
+  flex: 1;
+  overflow: hidden;
 }

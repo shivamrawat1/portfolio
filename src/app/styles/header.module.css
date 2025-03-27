@@ -10,9 +10,9 @@
 
 .logo_container {
     display: flex;
-    padding: 0.5rem;
+    padding: 0.25rem;
     border-bottom: 1px solid #000;
-    height: 80px;
+    height: 60px;
 }
 
 .logo {
@@ -101,7 +101,7 @@
 
 .nav_container {
     border-bottom: 1px solid #000;
-    height: 30px;
+    height: 25px;
     display: flex;
     justify-content: flex-end;
     padding: 0;
