@@ -1,15 +1,19 @@
 @import "tailwindcss";
 @import "./pattern.css";
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
 
 /* Default theme (fallback) */
 :root {
-  --background: #ffffff;
+  --background: #FFF7F4;
+  --text: #000000;
+  --border: #000000;
   --foreground: #1a2e3b;
   --accent: #1a2e3b;
   --secondary: #ffffff;
   --card-bg: rgba(255, 255, 255, 0.8);
   --card-border: rgba(26, 46, 59, 0.2);
   --theme-applied: 'default';
+  --cursive-font: 'Playfair Display', 'Brush Script MT', cursive;
 }
 
 /* Teal theme */
@@ -79,7 +83,7 @@ html {
 
 body {
   background-color: var(--background);
-  color: var(--foreground);
+  color: var(--text);
   font-family: 'Inter', sans-serif;
   transition: background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease;
   position: relative;
@@ -366,4 +370,38 @@ textarea:focus {
 .dark {
   --card-bg: rgba(0, 0, 0, 0.2);
   --card-border: rgba(255, 255, 255, 0.1);
+}
+
+/* Add h1 styling with cursive font */
+h1 {
+  font-family: var(--cursive-font);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  line-height: 1.2;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--background);
+  color: var(--text);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Playfair Display', serif;
+}
+
+button {
+  font-family: inherit;
 }

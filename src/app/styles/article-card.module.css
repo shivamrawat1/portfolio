@@ -1,0 +1,88 @@
+.article_card {
+    border: 1px solid #000;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background-color: #FFF7F4;
+}
+
+.article_card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    margin-left: 0.5rem;
+}
+
+.date_line {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    flex-direction: row;
+    padding: 0 0.5rem;
+}
+
+.line {
+    flex: 1;
+    height: 1px;
+    background-color: #000;
+    margin-right: 0.5rem;
+}
+
+.date {
+    font-size: 0.8rem;
+    padding-left: 0.5rem;
+}
+
+.description {
+    flex: 1;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    margin-bottom: 1rem;
+    margin-left: 0.5rem;
+}
+
+.card_footer {
+    display: flex;
+    border-top: 1px solid #000;
+    min-height: 2rem;
+    width: 100%;
+}
+
+.category_container {
+    display: flex;
+    align-items: center;
+    border-right: 1px solid #000;
+    height: 100%;
+    padding: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.category_container:hover {
+    background-color: #f4d06f;
+}
+
+.category {
+    font-size: 0.8rem;
+}
+
+.read_more {
+    align-self: flex-end;
+    font-size: 0.9rem;
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #000;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.read_more:hover {
+    color: #f4d06f;
+}

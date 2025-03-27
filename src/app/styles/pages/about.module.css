@@ -1,0 +1,42 @@
+.about_container {
+    flex: 1;
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+}
+
+.about_content {
+    width: 100%;
+    max-width: 800px;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.image_container {
+    width: 100%;
+    height: 300px;
+    background-color: #e0e0e0;
+}
+
+.text_container {
+    background-color: #e0e0e0;
+    padding: 2rem;
+}
+
+.text_container h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+}
+
+.text_container h3 {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+}
+
+.text_container p {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
