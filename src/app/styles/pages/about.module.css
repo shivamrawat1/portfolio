@@ -1,27 +1,67 @@
 .about_container {
-    flex: 1;
+    max-width: 900px;
+    margin: 0 auto;
     padding: 2rem;
-    display: flex;
-    justify-content: center;
 }
 
 .about_content {
-    width: 100%;
-    max-width: 800px;
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    align-items: center;
 }
 
 .image_container {
     width: 100%;
-    height: 300px;
-    background-color: #e0e0e0;
+    min-height: 300px;
+    margin-bottom: 2rem;
+    /* Space for the SVG/image */
 }
 
 .text_container {
-    background-color: #e0e0e0;
-    padding: 2rem;
+    width: 100%;
+    font-size: 1.2rem;
+    line-height: 1.6;
+}
+
+.intro,
+.featured,
+.location {
+    margin-bottom: 1.5rem;
+}
+
+.name {
+    font-weight: bold;
+}
+
+.about_container .highlight_link {
+    position: relative;
+    text-decoration: none;
+    color: inherit;
+    font-weight: bold;
+    background-image: linear-gradient(transparent 60%, #FFDE59 40%);
+    background-size: 100% 100%;
+    transition: background-size 0.2s ease;
+    padding: 0 2px;
+}
+
+.about_container .highlight_link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 8px;
+    background-color: #FFDE59;
+    z-index: -1;
+    transition: all 0.2s ease;
+    /* Add this to debug */
+    pointer-events: none;
+}
+
+.highlight_link:hover {
+    color: #000;
+    background-size: 100% 100%;
+    background-image: linear-gradient(transparent 0%, #FFDE59 0%);
 }
 
 .text_container h2 {
@@ -39,4 +79,11 @@
     font-size: 1rem;
     line-height: 1.6;
     margin-bottom: 1rem;
+}
+
+.profile_image {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    height: auto;
 }

@@ -1,0 +1,76 @@
+.footer {
+    width: 100%;
+    height: 100%;
+    border-top: 1px solid #000;
+    background-color: #FFF7F4;
+    padding: 0.75rem 1.5rem;
+    font-size: 0.9rem;
+    position: relative;
+    z-index: 10;
+    /* Higher z-index than the projects container */
+    /* Remove margin-top: auto to prevent it from sticking to the bottom */
+}
+
+.footer_container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.footer_section {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.footer_section h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+.email_link {
+    color: inherit;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.email_link:hover {
+    text-decoration: underline;
+}
+
+.social_links {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.social_icon {
+    font-size: 1.2rem;
+    color: #000;
+    transition: opacity 0.2s ease;
+}
+
+.social_icon:hover {
+    opacity: 0.7;
+}
+
+.footer_bottom {
+    text-align: center;
+    margin-top: 0.5rem;
+    font-size: 0.8rem;
+    color: #666;
+}
+
+@media (max-width: 768px) {
+    .footer_container {
+        flex-direction: column;
+        gap: 0.5rem;
+        align-items: flex-start;
+    }
+
+    .footer {
+        padding: 0.5rem 1rem;
+    }
+}

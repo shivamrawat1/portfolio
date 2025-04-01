@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import styles from "../styles/main.module.css";
 import Header from "./header";
+import Footer from "./footer";
 import HomePage from "./pages/home";
 import Projects from "./pages/projects";
 import WritingPage from "./pages/writing";
@@ -41,7 +42,7 @@ export default function Main() {
     }, [categoryHeader]);
 
     return (
-        <div className={styles.main_container}>
+        <div className={styles.main_wrapper}>
             <div className={styles.sticky_nav_container}>
                 <Header currentPage={currentPage} setCurrentPage={setCurrentPage} />
                 {categoryHeader && (
@@ -57,6 +58,10 @@ export default function Main() {
                 {currentPage === "writing" && <WritingPage updateCategoryHeader={updateCategoryHeader} />}
                 {currentPage === "projects" && <Projects updateCategoryHeader={updateCategoryHeader} />}
             </main>
+
+            <div className={styles.footer_container}>
+                <Footer />
+            </div>
         </div>
     );
 }

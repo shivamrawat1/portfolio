@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect, useRef, useMemo } from 'react';
+import { useState, useEffect, useRef, useMemo, useCallback } from 'react';
 import ProjectCard from '../project-card';
 import styles from '../../styles/pages/projects.module.css';
 
@@ -27,6 +27,7 @@ export default function Projects({ updateCategoryHeader }: ProjectsProps) {
     const filterButtonRef = useRef<HTMLButtonElement>(null);
     const popupRef = useRef<HTMLDivElement>(null);
     const projectsGridRef = useRef<HTMLDivElement>(null);
+    const containerRef = useRef<HTMLDivElement>(null);
     const [navHeight, setNavHeight] = useState(160); // Default value
 
     // Sample projects data - in a real app, this would come from an API or props
@@ -129,48 +130,114 @@ export default function Projects({ updateCategoryHeader }: ProjectsProps) {
         ? projectsData.filter(project => project.category === selectedCategory)
         : projectsData;
 
-    // Setup horizontal scroll with mouse wheel
-    const setupHorizontalScroll = () => {
-        if (projectsGridRef.current) {
-            const handleWheel = (e: WheelEvent) => {
-                e.preventDefault();
-                projectsGridRef.current!.scrollLeft += e.deltaY;
-            };
+    // Setup smooth horizontal scrolling with vertical fallback
+    const setupHorizontalScroll = useCallback(() => {
+        if (!projectsGridRef.current) return;
 
-            projectsGridRef.current.addEventListener('wheel', handleWheel, { passive: false });
+        let isScrolling = false;
+        let startX = 0;
+        let startY = 0;
+        let startScrollLeft = 0;
 
-            return () => {
-                if (projectsGridRef.current) {
-                    projectsGridRef.current.removeEventListener('wheel', handleWheel);
+        // Track if we're in horizontal or vertical mode
+        let scrollMode: 'horizontal' | 'vertical' | null = null;
+
+        const container = projectsGridRef.current;
+
+        const onMouseDown = (e: MouseEvent) => {
+            isScrolling = true;
+            startX = e.pageX;
+            startY = e.pageY;
+            startScrollLeft = container.scrollLeft;
+            container.style.cursor = 'grabbing';
+            scrollMode = null; // Reset mode on new interaction
+        };
+
+        const onMouseMove = (e: MouseEvent) => {
+            if (!isScrolling) return;
+
+            const deltaX = e.pageX - startX;
+            const deltaY = e.pageY - startY;
+
+            // Determine scroll mode if not already set
+            if (!scrollMode) {
+                // If horizontal movement is greater, lock to horizontal scrolling
+                if (Math.abs(deltaX) > Math.abs(deltaY)) {
+                    scrollMode = 'horizontal';
+                } else {
+                    scrollMode = 'vertical';
                 }
-            };
-        }
-        return undefined;
-    };
+            }
 
-    // Initial setup of horizontal scroll
-    useEffect(() => {
-        return setupHorizontalScroll();
+            if (scrollMode === 'horizontal') {
+                e.preventDefault();
+                container.scrollLeft = startScrollLeft - deltaX;
+            }
+            // For vertical mode, do nothing and let the browser handle it
+        };
+
+        const onMouseUp = () => {
+            isScrolling = false;
+            container.style.cursor = 'grab';
+            scrollMode = null;
+        };
+
+        const onWheel = (e: WheelEvent) => {
+            // Check if we're at the end of horizontal scroll
+            const isAtEnd = container.scrollLeft + container.clientWidth >= container.scrollWidth - 10;
+
+            // If not at the end or scrolling left, handle horizontal scrolling
+            if (!isAtEnd || e.deltaY < 0) {
+                e.preventDefault();
+                // Multiply by 3 to make scrolling faster
+                container.scrollLeft += e.deltaY * 3;
+            }
+            // Otherwise, let the natural vertical scrolling happen
+        };
+
+        // Add all event listeners
+        container.style.cursor = 'grab';
+        container.addEventListener('mousedown', onMouseDown);
+        document.addEventListener('mousemove', onMouseMove);
+        document.addEventListener('mouseup', onMouseUp);
+        container.addEventListener('wheel', onWheel, { passive: false });
+
+        // Cleanup function
+        return () => {
+            if (container) {
+                container.style.cursor = '';
+                container.removeEventListener('mousedown', onMouseDown);
+                document.removeEventListener('mousemove', onMouseMove);
+                document.removeEventListener('mouseup', onMouseUp);
+                container.removeEventListener('wheel', onWheel);
+            }
+        };
     }, []);
 
-    // Re-setup horizontal scroll after filtering (when animationKey changes)
+    // Update the useEffect to use the new function
+    useEffect(() => {
+        const cleanup = setupHorizontalScroll();
+        return cleanup;
+    }, [setupHorizontalScroll]);
+
+    // Update the reset useEffect
     useEffect(() => {
         // Small delay to ensure the DOM has updated
         const timeoutId = setTimeout(() => {
-            return setupHorizontalScroll();
+            const cleanup = setupHorizontalScroll();
+            return cleanup;
         }, 100);
 
         return () => {
             clearTimeout(timeoutId);
         };
-    }, [animationKey]);
+    }, [animationKey, selectedCategory, setupHorizontalScroll]);
 
     // Handle category click
     const handleCategoryClick = (category: string, event: React.MouseEvent) => {
         event.preventDefault();
         event.stopPropagation();
 
-        // Update animation key to trigger fresh animations
         setAnimationKey(prev => prev + 1);
 
         setSelectedCategory(prevCategory =>
@@ -207,7 +274,6 @@ export default function Projects({ updateCategoryHeader }: ProjectsProps) {
         event.preventDefault();
         event.stopPropagation();
 
-        // Update animation key to trigger fresh animations
         setAnimationKey(prev => prev + 1);
 
         setSelectedCategory(null);
@@ -323,8 +389,12 @@ export default function Projects({ updateCategoryHeader }: ProjectsProps) {
     }, [selectedCategory, showFilterPopup]);
 
     return (
-        <div className={styles.projects_container}>
-            <div className={styles.projects_horizontal} key={animationKey} ref={projectsGridRef}>
+        <div className={styles.projects_container} ref={containerRef}>
+            <div
+                className={styles.projects_horizontal}
+                key={animationKey}
+                ref={projectsGridRef}
+            >
                 {filteredProjects.map(project => (
                     <ProjectCard key={project.id} project={project} />
                 ))}

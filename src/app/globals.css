@@ -16,66 +16,6 @@
   --cursive-font: 'Playfair Display', 'Brush Script MT', cursive;
 }
 
-/* Teal theme */
-.teal {
-  --background: #1a2e3b;
-  --foreground: #e6d9c9;
-  --accent: #e6d9c9;
-  --secondary: #1a2e3b;
-  --card-bg: rgba(26, 46, 59, 0.7);
-  --card-border: rgba(230, 217, 201, 0.2);
-}
-
-/* Sage theme */
-.sage {
-  --background: #4a6c6f;
-  --foreground: #f0f4e3;
-  --accent: #f0f4e3;
-  --secondary: #4a6c6f;
-  --card-bg: rgba(74, 108, 111, 0.7);
-  --card-border: rgba(240, 244, 227, 0.2);
-}
-
-/* Terra theme */
-.terra {
-  --background: #b85042;
-  --foreground: #f2e8cf;
-  --accent: #f2e8cf;
-  --secondary: #b85042;
-  --card-bg: rgba(184, 80, 66, 0.7);
-  --card-border: rgba(242, 232, 207, 0.2);
-}
-
-/* Mint theme */
-.mint {
-  --background: #4f6d7a;
-  --foreground: #c0d6df;
-  --accent: #c0d6df;
-  --secondary: #4f6d7a;
-  --card-bg: rgba(79, 109, 122, 0.7);
-  --card-border: rgba(192, 214, 223, 0.2);
-}
-
-/* Olive theme */
-.olive {
-  --background: #606c38;
-  --foreground: #fefae0;
-  --accent: #fefae0;
-  --secondary: #606c38;
-  --card-bg: rgba(96, 108, 56, 0.7);
-  --card-border: rgba(254, 250, 224, 0.2);
-}
-
-/* Plum theme */
-.plum {
-  --background: #5e548e;
-  --foreground: #f9f4f5;
-  --accent: #f9f4f5;
-  --secondary: #5e548e;
-  --card-bg: rgba(94, 84, 142, 0.7);
-  --card-border: rgba(249, 244, 245, 0.2);
-}
-
 /* Improved transitions for smooth theme changes */
 html {
   transition: color-scheme 0.5s ease;
@@ -87,8 +27,10 @@ body {
   font-family: 'Inter', sans-serif;
   transition: background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease;
   position: relative;
-  overflow: hidden;
-  height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: auto;
+  min-height: 100vh;
 }
 
 /* Remove the existing ::before and ::after patterns */

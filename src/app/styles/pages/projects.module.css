@@ -1,7 +1,13 @@
 .projects_container {
-    height: 100%;
+    width: 100%;
     display: flex;
     flex-direction: column;
+    position: relative;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    overflow: visible;
+    border-top: none;
 }
 
 .sticky_header {
@@ -120,12 +126,25 @@
     display: flex;
     overflow-x: auto;
     overflow-y: hidden;
-    gap: 1.5rem;
-    padding: 1rem;
-    height: 100%;
+    gap: 1rem;
+    padding: 0 1rem;
+    padding-top: 0;
     width: 100%;
+    height: calc(100vh - var(--total-header-height, 0px) - 20px);
+    /* Add extra buffer */
+    /* Calculate exact height */
+    min-height: auto;
+    max-height: none;
     scrollbar-width: none;
     -ms-overflow-style: none;
+    position: relative;
+    z-index: 5;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    user-select: none;
+    align-items: stretch;
+    border-top: none;
+    margin-bottom: 0;
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */
@@ -133,21 +152,27 @@
     display: none;
 }
 
+/* Update the project cards with more precise height calculation */
 .projects_horizontal>div {
     flex: 0 0 auto;
-    width: 350px;
-    /* Fixed width for cards */
-    height: 100%;
-    /* Take full height of container */
-    transition: transform 0.3s ease;
+    width: 520px;
     border: 1px solid #000;
-    /* Ensure border is visible */
-    margin-right: 1rem;
-
+    border-top: none;
+    margin-right: 0.75rem;
     background-color: #FFF7F4;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    height: calc(100% - 4px);
+    /* Account for borders more precisely */
+    /* Account for borders */
+    margin-top: 0;
+    max-height: calc(100vh - var(--total-header-height, 0px) - 25px);
+    /* Add more buffer */
+    /* Ensure it doesn't exceed viewport */
+    overflow: hidden;
+    /* Prevent content from overflowing */
 }
-
 
 .arrow_icon {
     margin-left: 0.5rem;
@@ -170,7 +195,7 @@
 /* Media queries for responsive layout */
 @media (max-width: 768px) {
     .projects_horizontal>div {
-        width: 300px;
+        width: 420px;
     }
 
     .header_content {
@@ -190,5 +215,14 @@
     width: 100%;
     max-width: 100rem;
     margin: 0 auto;
+}
 
+/* Add a spacer that appears after the horizontal scroll */
+.projects_end_marker {
+    display: none;
+}
+
+/* Add a simple scroll indicator at the bottom of the projects container */
+.scroll_indicator {
+    display: none;
 }
