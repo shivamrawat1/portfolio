@@ -64,15 +64,6 @@ export default function WritingPage({ updateCategoryHeader }: WritingPageProps) 
         }
     ], []);
 
-    // Create a header component to pass up to the main component
-    const _categoryHeader = useMemo(() => (
-        <div className={styles.category_header}>
-            <div className={styles.header_content}>
-                {/* Removed the h2 with "WRITING" text */}
-            </div>
-        </div>
-    ), []);
-
     // Update the parent component with our header
     useEffect(() => {
         updateCategoryHeader(null);
