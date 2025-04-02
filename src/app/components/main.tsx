@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import styles from "../styles/main.module.css";
 import Header from "./header";
 import Footer from "./footer";
@@ -13,11 +13,20 @@ export default function Main() {
     const [currentPage, setCurrentPage] = useState("home");
     const [categoryHeader, setCategoryHeader] = useState<React.ReactNode | null>(null);
     const mainContentRef = useRef<HTMLDivElement>(null);
+    const isUpdatingRef = useRef(false);
 
     // Function to set the category header based on current page
-    const updateCategoryHeader = (header: React.ReactNode) => {
-        setCategoryHeader(header);
-    };
+    // Wrap in useCallback to prevent recreation on every render
+    const updateCategoryHeader = useCallback((header: React.ReactNode) => {
+        if (!isUpdatingRef.current) {
+            isUpdatingRef.current = true;
+
+            setTimeout(() => {
+                setCategoryHeader(header);
+                isUpdatingRef.current = false;
+            }, 0);
+        }
+    }, []);
 
     // Reset scroll position when changing pages
     useEffect(() => {

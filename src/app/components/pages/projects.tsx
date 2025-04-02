@@ -330,15 +330,18 @@ export default function Projects({ updateCategoryHeader }: ProjectsProps) {
         </div>
     ), [selectedCategory, showFilterPopup, categories]);
 
-    // Update the parent component with our header
+    // Create a separate effect just for updating the header
     useEffect(() => {
+        // Only run this once when the component mounts
         updateCategoryHeader(categoryHeader);
 
-        // Clean up when component unmounts
+        // Clean up when unmounting
         return () => {
             updateCategoryHeader(null);
         };
-    }, [selectedCategory, showFilterPopup]);
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []); // Empty dependency array - only run on mount/unmount
 
     return (
         <div className={styles.projects_container} ref={containerRef}>

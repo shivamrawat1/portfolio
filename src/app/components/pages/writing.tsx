@@ -2,7 +2,7 @@
 
 import styles from "../../styles/pages/writing.module.css";
 import ArticleCard from "../article-card";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useMemo } from "react";
 
 // Add this prop to your component
 interface WritingPageProps {
@@ -16,7 +16,8 @@ export default function WritingPage({ updateCategoryHeader }: WritingPageProps) 
     const filterButtonRef = useRef<HTMLButtonElement>(null);
     const popupRef = useRef<HTMLDivElement>(null);
 
-    const articles = [
+    // Wrap articles in useMemo to prevent recreation on every render
+    const articles = useMemo(() => [
         {
             id: 1,
             title: "Title",
@@ -113,15 +114,19 @@ export default function WritingPage({ updateCategoryHeader }: WritingPageProps) 
             category: "new",
             url: "/writing/article-12"
         }
-    ];
+    ], []);
 
     // Get unique categories
-    const categories = Array.from(new Set(articles.map(article => article.category)));
+    const categories = useMemo(() =>
+        Array.from(new Set(articles.map(article => article.category)))
+        , [articles]);
 
     // Filter articles based on selected category
-    const filteredArticles = selectedCategory
-        ? articles.filter(article => article.category === selectedCategory)
-        : articles;
+    const filteredArticles = useMemo(() =>
+        selectedCategory
+            ? articles.filter(article => article.category === selectedCategory)
+            : articles
+        , [selectedCategory, articles]);
 
     // Handle category click
     const handleCategoryClick = (category: string, e: React.MouseEvent) => {
@@ -179,7 +184,7 @@ export default function WritingPage({ updateCategoryHeader }: WritingPageProps) 
     }, [selectedCategory, filteredArticles]);
 
     // Create a header component to pass up to the main component
-    const categoryHeader = (
+    const categoryHeader = useMemo(() => (
         <div className={styles.category_header}>
             <div className={styles.header_content}>
                 <h2>WRITING</h2>
@@ -227,14 +232,16 @@ export default function WritingPage({ updateCategoryHeader }: WritingPageProps) 
                 </div>
             </div>
         </div>
-    );
+    ), [selectedCategory, showFilterPopup, categories]);
 
     // Update the parent component with our header
     useEffect(() => {
-        if (categoryHeader !== header) {
-            updateCategoryHeader(categoryHeader);
-        }
-    }, [selectedCategory, articles, categoryHeader, updateCategoryHeader]);
+        updateCategoryHeader(categoryHeader);
+
+        return () => {
+            updateCategoryHeader(null);
+        };
+    }, [categoryHeader, updateCategoryHeader]);
 
     return (
         <div className={styles.writing_container}>
