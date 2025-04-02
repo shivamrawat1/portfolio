@@ -51,7 +51,6 @@ export default function Main() {
                     </div>
                 )}
             </div>
-
             <main ref={mainContentRef} className={styles.main}>
                 {currentPage === "home" && <HomePage />}
                 {currentPage === "about" && <AboutPage />}

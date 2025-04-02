@@ -11,12 +11,9 @@ interface HeaderProps {
 
 export default function Header({ currentPage, setCurrentPage }: HeaderProps) {
     const [displayText, setDisplayText] = useState("s4m0r3t");
-    const [isDecoding, setIsDecoding] = useState(false);
     const decodingTimerRef = useRef<NodeJS.Timeout | null>(null);
 
     const startDecoding = () => {
-        setIsDecoding(true);
-
         // Define the decoding steps to show the transformation clearly
         const decodingSteps = [
             "s4m0r3t",       // Original
@@ -57,7 +54,6 @@ export default function Header({ currentPage, setCurrentPage }: HeaderProps) {
         if (decodingTimerRef.current) {
             clearTimeout(decodingTimerRef.current);
         }
-        setIsDecoding(false);
         setDisplayText("s4m0r3t");
     };
 

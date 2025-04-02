@@ -1,3 +1,5 @@
+"use client"
+
 import styles from "../../styles/pages/about.module.css";
 import Link from "next/link";
 import Image from "next/image";
@@ -13,7 +15,7 @@ export default function AboutPage() {
         }, 1200); // Change every 1.2 second
 
         return () => clearInterval(interval); // Cleanup on unmount
-    }, []);
+    }, [heads.length]);
 
     return (
         <div className={styles.about_container}>
@@ -29,6 +31,16 @@ export default function AboutPage() {
                     />
                 </div>
                 <div className={styles.text_container}>
+                    <p className={styles.intro}>
+                        I&apos;m <span className={styles.name}>Shivam Rawat</span>, a designer and developer
+                        focused on creating digital experiences that are both functional and beautiful.
+                    </p>
+                    <p>
+                        I&apos;ve been working in the tech industry for over 5 years...
+                    </p>
+                    <p>
+                        When I&apos;m not coding or designing, you can find me...
+                    </p>
                     <p>
                         I grew up near the mountains in Uttarakhand, India, where I'd finish schoolwork early
                         and spend the rest of the year replicating experiments from shows like{' '}

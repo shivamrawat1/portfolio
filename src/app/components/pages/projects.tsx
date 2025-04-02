@@ -28,7 +28,6 @@ export default function Projects({ updateCategoryHeader }: ProjectsProps) {
     const popupRef = useRef<HTMLDivElement>(null);
     const projectsGridRef = useRef<HTMLDivElement>(null);
     const containerRef = useRef<HTMLDivElement>(null);
-    const [navHeight, setNavHeight] = useState(160); // Default value
 
     // Sample projects data - in a real app, this would come from an API or props
     const projectsData: Project[] = [
@@ -279,53 +278,6 @@ export default function Projects({ updateCategoryHeader }: ProjectsProps) {
         setSelectedCategory(null);
         setShowFilterPopup(false);
     };
-
-    useEffect(() => {
-        // Function to calculate the navigation height
-        const calculateNavHeight = () => {
-            const navElement = document.querySelector('nav'); // Adjust selector as needed
-            const logoElement = document.querySelector('.logo-section'); // Adjust selector as needed
-
-            if (navElement && logoElement) {
-                const totalHeight = navElement.getBoundingClientRect().height +
-                    logoElement.getBoundingClientRect().height;
-                setNavHeight(totalHeight);
-            }
-        };
-
-        // Calculate on mount and window resize
-        calculateNavHeight();
-        window.addEventListener('resize', calculateNavHeight);
-
-        return () => {
-            window.removeEventListener('resize', calculateNavHeight);
-        };
-    }, []);
-
-    // Add this to your existing useEffect that calculates heights
-    useEffect(() => {
-        // Function to calculate the navigation height
-        const calculateHeaderHeight = () => {
-            const navContainer = document.querySelector('.sticky-nav-container');
-
-            if (navContainer) {
-                const headerHeight = navContainer.getBoundingClientRect().height;
-                // Use a ref instead of state to avoid re-renders
-                document.documentElement.style.setProperty('--sticky-header-height', `${headerHeight}px`);
-            }
-        };
-
-        // Calculate on mount and window resize
-        calculateHeaderHeight();
-
-        // Only add the event listener once
-        window.addEventListener('resize', calculateHeaderHeight);
-
-        return () => {
-            window.removeEventListener('resize', calculateHeaderHeight);
-        };
-        // Empty dependency array to run only on mount
-    }, []);
 
     // Create a header component using useMemo to prevent recreation on every render
     const categoryHeader = useMemo(() => (

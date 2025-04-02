@@ -231,13 +231,10 @@ export default function WritingPage({ updateCategoryHeader }: WritingPageProps) 
 
     // Update the parent component with our header
     useEffect(() => {
-        updateCategoryHeader(categoryHeader);
-
-        // Clean up when component unmounts
-        return () => {
-            updateCategoryHeader(null);
-        };
-    }, [selectedCategory, showFilterPopup]);
+        if (categoryHeader !== header) {
+            updateCategoryHeader(categoryHeader);
+        }
+    }, [selectedCategory, articles, categoryHeader, updateCategoryHeader]);
 
     return (
         <div className={styles.writing_container}>
