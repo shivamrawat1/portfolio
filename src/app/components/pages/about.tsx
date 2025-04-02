@@ -42,11 +42,11 @@ export default function AboutPage() {
                         When I&apos;m not coding or designing, you can find me...
                     </p>
                     <p>
-                        I grew up near the mountains in Uttarakhand, India, where I'd finish schoolwork early
+                        I grew up near the mountains in Uttarakhand, India, where I&apos;d finish schoolwork early
                         and spend the rest of the year replicating experiments from shows like{' '}
                         <Link href="https://en.wikipedia.org/wiki/Backyard_Science" className={styles.highlight_link}>Backyard Science</Link> and{' '}
                         <Link href="https://www.imdb.com/title/tt2314205/" className={styles.highlight_link}>FAQ</Link>. When home experiments
-                        weren't enough to satistfy my curiosity, I reached out to over 100 professors at a
+                        weren&apos;t enough to satistfy my curiosity, I reached out to over 100 professors at a
                         nearby university, hoping to work in their labs. Surprisingly, the cold outreach
                         worked, and I ended up conducting bioinformatics research and winning{' '}
                         <Link href="https://x.com/mygovindia/status/1485643062001172484" className={styles.highlight_link}>national</Link> and{' '}
@@ -62,7 +62,7 @@ export default function AboutPage() {
                         <Link href="https://www.minerva.edu/about/" className={styles.highlight_link}>Minerva</Link>, where studying in a different
                         country each semester—including the US, South Korea, Taiwan, India, Argentina, the UK,
                         and Germany—broadened my academic and cultural experiences. I initially pursued
-                        Natural Science but, after discovering wet labs weren't for me, switched to Computer
+                        Natural Science but, after discovering wet labs weren&apos;t for me, switched to Computer
                         Science as my major.
                     </p>
                     <p>
