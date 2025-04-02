@@ -1,13 +1,9 @@
 .projects_container {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
     position: relative;
-    height: 100vh;
-    padding: 0;
-    margin: 0;
-    overflow: visible;
-    border-top: none;
+    width: 100%;
+    overflow: hidden;
+    /* Hide overflow at container level */
+    padding: 1rem 0;
 }
 
 .sticky_header {
@@ -124,27 +120,23 @@
 /* Horizontal scrolling layout */
 .projects_horizontal {
     display: flex;
-    overflow-x: auto;
-    overflow-y: hidden;
-    gap: 1rem;
+    gap: 1.5rem;
     padding: 0 1rem;
-    padding-top: 0;
-    width: 100%;
-    height: calc(100vh - var(--total-header-height, 0px) - 20px);
-    /* Add extra buffer */
-    /* Calculate exact height */
-    min-height: auto;
-    max-height: none;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-    position: relative;
-    z-index: 5;
-    scroll-behavior: smooth;
+    overflow-x: auto;
+    /* Enable horizontal scrolling */
     -webkit-overflow-scrolling: touch;
-    user-select: none;
-    align-items: stretch;
-    border-top: none;
-    margin-bottom: 0;
+    /* Better scroll on iOS */
+    scroll-behavior: smooth;
+    width: 100%;
+    min-width: min-content;
+    /* Allow content to determine width */
+    cursor: grab;
+    white-space: nowrap;
+    /* Prevent wrapping */
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */
@@ -152,52 +144,19 @@
     display: none;
 }
 
-/* Update the project cards with more precise height calculation */
-.projects_horizontal>div {
+/* When actively scrolling */
+.projects_horizontal.active {
+    cursor: grabbing;
+}
+
+/* Ensure the scroll container has sufficient height */
+.projects_horizontal>* {
     flex: 0 0 auto;
-    width: 520px;
-    border: 1px solid #000;
-    border-top: none;
-    margin-right: 0.75rem;
-    background-color: #FFF7F4;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-    display: flex;
-    flex-direction: column;
-    height: calc(100% - 4px);
-    /* Account for borders more precisely */
-    /* Account for borders */
-    margin-top: 0;
-    max-height: calc(100vh - var(--total-header-height, 0px) - 25px);
-    /* Add more buffer */
-    /* Ensure it doesn't exceed viewport */
-    overflow: hidden;
-    /* Prevent content from overflowing */
-}
-
-.arrow_icon {
-    margin-left: 0.5rem;
-    font-size: 1.2rem;
-    animation: bounceRight 1.5s infinite;
-}
-
-@keyframes bounceRight {
-
-    0%,
-    100% {
-        transform: translateX(0);
-    }
-
-    50% {
-        transform: translateX(10px);
-    }
+    /* Don't allow items to grow or shrink */
 }
 
 /* Media queries for responsive layout */
 @media (max-width: 768px) {
-    .projects_horizontal>div {
-        width: 420px;
-    }
-
     .header_content {
         flex-direction: column;
         align-items: flex-start;
@@ -224,5 +183,113 @@
 
 /* Add a simple scroll indicator at the bottom of the projects container */
 .scroll_indicator {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0.5rem 1.5rem;
+    font-size: 0.9rem;
+    opacity: 0.7;
+    position: sticky;
+    left: 0;
+    width: 100%;
+}
+
+.projects_auto_scroll {
+    overflow: hidden;
+    width: 100%;
+    position: relative;
+}
+
+/* The scrolling track that will be animated */
+.projects_track {
+    display: flex;
+    gap: 1.5rem;
+    padding: 0 1rem;
+    animation: scroll 60s linear infinite;
+    width: max-content;
+    cursor: grab;
+    transition: transform 0.1s ease-out;
+}
+
+/* Styling for active dragging */
+.projects_track.dragging {
+    cursor: grabbing;
+    transition: none;
+    /* Disable transition during drag for immediate response */
+}
+
+/* Pause animation on hover */
+.projects_track:hover {
+    animation-play-state: paused;
+}
+
+/* Individual project item */
+.project_item {
+    flex: 0 0 auto;
+    user-select: none;
+    /* Prevent text selection during drag */
+}
+
+/* Keyframes for automatic scrolling animation */
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(calc(-300px * 6 - 1.5rem * 6));
+        /* Adjust based on card width and gap */
+    }
+}
+
+/* Make sure animation pauses when user might be trying to interact */
+.projects_auto_scroll:hover .projects_track,
+.projects_auto_scroll:focus .projects_track,
+.projects_auto_scroll:active .projects_track {
+    animation-play-state: paused;
+}
+
+/* For touch devices */
+@media (hover: none) {
+    .projects_track {
+        animation-play-state: running !important;
+    }
+
+    .projects_track:active {
+        animation-play-state: paused !important;
+    }
+}
+
+.projects_scroll {
+    display: flex;
+    gap: 1.5rem;
+    padding: 0 1rem 1rem;
+    overflow-x: auto;
+    width: 100%;
+    scrollbar-width: none;
+    /* Firefox */
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    cursor: grab;
+    scroll-behavior: smooth;
+    /* Smoother scrolling */
+    -webkit-overflow-scrolling: touch;
+    /* Better touch scrolling */
+}
+
+.projects_scroll::-webkit-scrollbar {
     display: none;
+    /* Chrome, Safari, Opera */
+}
+
+.projects_scroll.dragging {
+    cursor: grabbing;
+    scroll-behavior: auto;
+    /* Disable smooth scrolling during dragging */
+}
+
+.project_item {
+    flex: 0 0 auto;
+    user-select: none;
+    /* Prevent text selection */
 }

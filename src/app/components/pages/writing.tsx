@@ -10,7 +10,7 @@ interface WritingPageProps {
 }
 
 export default function WritingPage({ updateCategoryHeader }: WritingPageProps) {
-    const [animationKey, setAnimationKey] = useState(0);
+    const [animationKey] = useState(0);
 
     // Wrap articles in useMemo to prevent recreation on every render
     const articles = useMemo(() => [

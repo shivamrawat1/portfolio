@@ -26,24 +26,29 @@ export default function ArticleCard({ article, onCategoryClick }: ArticleProps) 
 
     return (
         <div className={styles.article_card}>
-            <h3 className={styles.title}>{article.title}</h3>
-            <div className={styles.date_line}>
-                <hr className={styles.line} />
-                <span className={styles.date}>{article.date}</span>
-            </div>
-            <p className={styles.description}>{article.description}</p>
-            <Link href={article.url} className={styles.read_more}>
-                Read More &rarr;
-            </Link>
-            <div className={styles.card_footer}>
-                {article.category && (
-                    <div
-                        className={styles.category_container}
-                        onClick={handleCategoryClick}
-                    >
-                        <span className={styles.category}>#{article.category}</span>
+            <div className={styles.card_content}>
+                <h3 className={styles.title}>{article.title}</h3>
+                <div className={styles.date_line}>
+                    <hr className={styles.line} />
+                    <span className={styles.date}>{article.date}</span>
+                </div>
+                <p className={styles.description}>{article.description}</p>
+                <div className={styles.spacer}></div>
+                <div className={styles.card_bottom}>
+                    <Link href={article.url} className={styles.read_more}>
+                        Read More &rarr;
+                    </Link>
+                    <div className={styles.card_footer}>
+                        {article.category && (
+                            <div
+                                className={styles.category_container}
+                                onClick={handleCategoryClick}
+                            >
+                                <span className={styles.category}>#{article.category}</span>
+                            </div>
+                        )}
                     </div>
-                )}
+                </div>
             </div>
         </div>
     );

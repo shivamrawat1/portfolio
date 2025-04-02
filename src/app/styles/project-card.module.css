@@ -1,38 +1,23 @@
 .project_card {
+    width: 30vw;
+    height: 80vh;
     background-color: #FFF7F4;
+    border: 1px solid #000;
     display: flex;
     flex-direction: column;
-    height: 100%;
-    width: 100%;
-    /* Use full width of parent */
-    transition: none;
-    border: 1px solid #000;
-    border-top: none;
-    /* Remove top border */
-    margin-top: 0;
-    margin-bottom: 0;
-    /* Remove top margin */
-    /* Add more buffer */
-    /* Ensure it doesn't exceed viewport */
     overflow: hidden;
-    /* Prevent content from overflowing */
+    transition: transform 0.2s;
+}
+
+.project_card:hover {
+    transform: translateY(-5px);
 }
 
 /* Top row with title and image */
 .top_row {
     display: flex;
     height: 55%;
-    /* Reduce height further */
-    /* Slightly reduce height */
     border-bottom: 1px solid #000;
-    min-height: unset;
-    max-height: unset;
-    margin-top: 0;
-    /* Remove top margin */
-    padding-top: 0;
-    /* Remove top padding */
-    overflow: hidden;
-    /* Prevent content from overflowing */
 }
 
 .issue_title {
@@ -87,15 +72,10 @@
 .bottom_row {
     display: flex;
     flex-direction: column;
-    flex: 1;
-    padding: 0.4rem;
-    /* Reduce padding */
-    min-height: 0;
-    max-height: 45%;
-    /* Limit maximum height */
-    overflow: hidden;
-    justify-content: flex-start;
-    /* Align content to the top */
+    height: 45%;
+    padding: 0.75rem;
+    overflow-y: auto;
+    /* Allow vertical scrolling within card */
 }
 
 /* Make the content section more compact */
@@ -207,4 +187,33 @@
     border-top: 1px solid #000;
     margin: 0.1rem 0;
     width: 100%;
+}
+
+/* Additional responsive styles for very small screens */
+@media (max-width: 768px) {
+    .project_card {
+        width: 250px;
+    }
+}
+
+@media (max-width: 480px) {
+    .project_card {
+        width: 220px;
+    }
+
+    .issue_title {
+        font-size: 1.2rem;
+        /* Smaller title on mobile */
+    }
+
+    .description {
+        font-size: 0.9rem;
+        /* Smaller text on mobile */
+    }
+
+    .tech_item {
+        font-size: 0.8rem;
+        /* Smaller tech items on mobile */
+        padding: 0.25rem 0.5rem;
+    }
 }
