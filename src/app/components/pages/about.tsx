@@ -31,16 +31,6 @@ export default function AboutPage() {
                     />
                 </div>
                 <div className={styles.text_container}>
-                    <p className={styles.intro}>
-                        I&apos;m <span className={styles.name}>Shivam Rawat</span>, a designer and developer
-                        focused on creating digital experiences that are both functional and beautiful.
-                    </p>
-                    <p>
-                        I&apos;ve been working in the tech industry for over 5 years...
-                    </p>
-                    <p>
-                        When I&apos;m not coding or designing, you can find me...
-                    </p>
                     <p>
                         I grew up near the mountains in Uttarakhand, India, where I&apos;d finish schoolwork early
                         and spend the rest of the year replicating experiments from shows like{' '}

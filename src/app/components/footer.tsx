@@ -9,24 +9,24 @@ export default function Footer() {
             <div className={styles.footer_container}>
                 <div className={styles.footer_section}>
                     <h3>Email</h3>
-                    <a href="mailto:hello@worksinprogress.co" className={styles.email_link}>
-                        hello@worksinprogress.co
+                    <a href="mailto:shivam@uni.minerva.edu" className={styles.email_link}>
+                        shivam@uni.minerva.edu
                     </a>
                 </div>
 
                 <div className={styles.footer_section}>
                     <h3>Socials</h3>
                     <div className={styles.social_links}>
-                        <Link href="https://instagram.com" aria-label="Instagram">
+                        <Link href="https://instagram.com/sci.vam" aria-label="Instagram">
                             <FaInstagram className={styles.social_icon} />
                         </Link>
-                        <Link href="https://twitter.com" aria-label="Twitter">
+                        <Link href="https://twitter.com/scivam_" aria-label="Twitter">
                             <FaTwitter className={styles.social_icon} />
                         </Link>
-                        <Link href="https://youtube.com" aria-label="YouTube">
+                        <Link href="https://youtube.com/shivamrawat108" aria-label="YouTube">
                             <FaYoutube className={styles.social_icon} />
                         </Link>
-                        <Link href="https://linkedin.com" aria-label="LinkedIn">
+                        <Link href="https://www.linkedin.com/in/shivamrawat1/" aria-label="LinkedIn">
                             <FaLinkedin className={styles.social_icon} />
                         </Link>
                     </div>
@@ -34,7 +34,7 @@ export default function Footer() {
             </div>
 
             <div className={styles.footer_bottom}>
-                <p>Works in Progress © {new Date().getFullYear()} | Designed by And-Now</p>
+                <p>Shivam Rawat © {new Date().getFullYear()} | Designed by Shivam Rawat</p>
             </div>
         </footer>
     );
