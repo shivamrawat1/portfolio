@@ -16,51 +16,11 @@ export default function WritingPage({ updateCategoryHeader }: WritingPageProps) 
     const articles = useMemo(() => [
         {
             id: 1,
-            title: "Title",
-            description: "cjohc dewkcnwencwke cwjenchjwnechewbfchegbvcjwecjgewqv chjgwechjwechjejch dhwegj dwejehd dqjhdkhqd qjdbqkd qkjwd xqk kdbqwkd q db qj dqkd qj dqkw",
-            date: "01/05/25",
-            category: "new",
-            url: "/writing/article-1"
-        },
-        {
-            id: 2,
-            title: "Title",
-            description: "cjohc dewkcnwencwke cwjenchjwnechewbfchegbvcjwecjgewqv chjgwechjwechjejch dhwegj dwejehd dqjhdkhqd qjdbqkd qkjwd xqk kdbqwkd q db qj dqkd qj dqkw",
-            date: "01/01/25",
-            category: "current",
-            url: "/writing/article-2"
-        },
-        {
-            id: 3,
-            title: "Title",
-            description: "cjohc dewkcnwencwke cwjenchjwnechewbfchegbvcjwecjgewqv chjgwechjwechjejch dhwegj dwejehd dqjhdkhqd qjdbqkd qkjwd xqk kdbqwkd q db qj dqkd qj dqkw",
-            date: "01/05/25",
-            category: "current",
-            url: "/writing/article-3"
-        },
-        {
-            id: 4,
-            title: "Title",
-            description: "cjohc dewkcnwencwke cwjenchjwnechewbfchegbvcjwecjgewqv chjgwechjwechjejch dhwegj dwejehd dqjhdkhqd qjdbqkd qkjwd xqk kdbqwkd q db qj dqkd qj dqkw",
-            date: "01/05/25",
-            category: "current",
-            url: "/writing/article-4"
-        },
-        {
-            id: 5,
-            title: "Title",
-            description: "cjohc dewkcnwencwke cwjenchjwnechewbfchegbvcjwecjgewqv chjgwechjwechjejch dhwegj dwejehd dqjhdkhqd qjdbqkd qkjwd xqk kdbqwkd q db qj dqkd qj dqkw",
-            date: "01/05/25",
-            category: "current",
-            url: "/writing/article-5"
-        },
-        {
-            id: 6,
-            title: "Title",
-            description: "cjohc dewkcnwencwke cwjenchjwnechewbfchegbvcjwecjgewqv chjgwechjwechjejch dhwegj dwejehd dqjhdkhqd qjdbqkd qkjwd xqk kdbqwkd q db qj dqkd qj dqkw",
-            date: "01/05/25",
-            category: "old",
-            url: "/writing/article-6"
+            title: "Biowarfare Against the Dengue Virus",
+            description: "A simple genetic tweak to prevent dengue epidemics.",
+            date: "21/04/23",
+            category: "genetics",
+            url: "https://shivamrawat1.substack.com/p/biowarfare-against-the-dengue-virus"
         }
     ], []);
 
