@@ -12,6 +12,7 @@ interface Project {
     category: string;
     image?: string;
     techstack?: string[];
+    link?: string;
 }
 
 interface ProjectCardProps {
@@ -22,11 +23,27 @@ export default function ProjectCard({ project }: ProjectCardProps) {
     const router = useRouter();
 
     const handleViewProject = () => {
-        router.push(`/projects/${project.id}`);
+        if (project.link) {
+            window.open(project.link, '_blank');
+        } else {
+            router.push(`/projects/${project.id}`);
+        }
+    };
+
+    const getThemeClass = () => {
+        if (project.id % 4 === 0) {
+            return styles.theme_four;
+        } else if (project.id % 3 === 0) {
+            return styles.theme_three;
+        } else if (project.id % 2 === 0) {
+            return styles.theme_two;
+        } else {
+            return styles.theme_one;
+        }
     };
 
     return (
-        <div className={styles.project_card}>
+        <div className={`${styles.project_card} ${getThemeClass()}`}>
             <div className={styles.top_row}>
                 <h3 className={styles.issue_title}>{project.title}</h3>
                 <div className={styles.image_container}>
@@ -39,7 +56,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
                         />
                     )}
                     <div className={styles.view_button_container}>
-                        <button className={styles.view_button} onClick={handleViewProject}>View</button>
+                        <button className={styles.view_button} onClick={handleViewProject}>View Project</button>
                     </div>
                 </div>
             </div>

@@ -11,7 +11,7 @@ export default function HomePage() {
                     width={950}
                     height={100}
                     priority
-                    className={styles.file_svg}
+                    className={`${styles.file_svg} ${styles.levitate}`}
                 />
             </div>
         </div>

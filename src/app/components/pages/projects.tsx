@@ -13,6 +13,7 @@ interface Project {
     category: string;
     image?: string;
     techstack?: string[];
+    link?: string;
 }
 
 interface ProjectsProps {
@@ -29,12 +30,13 @@ export default function Projects({ updateCategoryHeader }: ProjectsProps) {
     const projectsData: Project[] = [
         {
             id: 1,
-            title: "Portfolio Website",
-            description: "My personal portfolio website built with Next.js and TypeScript",
-            date: "2023-08-15",
+            title: "Techtonic",
+            description: "TechTonic transforms technical interview preparation by focusing not just on solving coding problems but on structuring thought processes for clear, logical communication. Through AI-driven, structured feedback based on proven frameworks like UMPIRE, we help you identify and improve weaknesses, enhance problem-solving skills, and build confidence for high-pressure interview scenarios, all at an affordable cost.t",
+            date: "2024-09-15",
             category: "Web Development",
-            image: "/bg.png",
-            techstack: ["React", "TypeScript", "Next.js", "CSS Modules"]
+            image: "/techtonic.png",
+            techstack: ["Django", "Javascript", "CSS Modules"],
+            link: "https://github.com/shivamrawat1/techtonic"
         },
         {
             id: 2,

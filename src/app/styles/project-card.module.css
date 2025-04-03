@@ -40,6 +40,26 @@
     overflow: hidden;
 }
 
+/* Image overlay styles */
+.image_container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.5;
+    /* Transparency level */
+    z-index: 1;
+    /* Above image but below buttons */
+    transition: opacity 0.3s ease;
+}
+
+/* Hide overlay on hover */
+.image_container:hover::after {
+    opacity: 0;
+}
+
 .project_image {
     object-fit: cover !important;
     object-position: center !important;
@@ -50,7 +70,7 @@
     bottom: 0;
     right: 0;
     z-index: 2;
-    background: #FFF7F4;
+    background: inherit;
     border-top: 1px solid #000;
     border-left: 1px solid #000;
 }
@@ -212,4 +232,182 @@
         /* Smaller tech items on mobile */
         padding: 0.25rem 0.5rem;
     }
+}
+
+/* Theme classes based on ID */
+.theme_one {
+    background-color: #FFF7F4;
+    border-color: #4d3908;
+}
+
+.theme_one .issue_title {
+    background-color: #f3d06d;
+    /* Light gold background */
+    color: #4d3908;
+    /* Dark gold text color */
+}
+
+.theme_one .view_button_container {
+    background-color: #f3d06d;
+}
+
+.theme_one .bottom_row {
+    background-color: #4d3908;
+    /* Dark gold background */
+    color: #f3d06d;
+    /* Light gold text color */
+}
+
+.theme_one .divider,
+.theme_one .bottom_divider {
+    border-color: #f3d06d;
+    /* Light gold for dividers */
+}
+
+.theme_one .tech_item {
+    background-color: #000;
+    /* Black for all themes */
+    color: #f3d06d;
+}
+
+.theme_two {
+    background-color: #f2f2f2;
+    border-color: #363d8f;
+}
+
+.theme_two .issue_title {
+    background-color: #d1d3ed;
+    /* Light blue background */
+    color: #363d8f;
+    /* Dark blue text */
+}
+
+.theme_two .view_button_container {
+    background-color: #d1d3ed;
+}
+
+.theme_two .bottom_row {
+    background-color: #363d8f;
+    /* Dark blue background */
+    color: #d1d3ed;
+    /* Light blue text color */
+}
+
+.theme_two .divider,
+.theme_two .bottom_divider {
+    border-color: #d1d3ed;
+    /* Light blue for dividers */
+}
+
+.theme_two .issue_title,
+.theme_two .top_row {
+    border-color: #363d8f;
+}
+
+.theme_two .tech_item {
+    background-color: #000;
+    /* Black for all themes */
+    color: #d1d3ed;
+}
+
+.theme_three {
+    background-color: #f7f9f5;
+    border-color: #09332a;
+}
+
+.theme_three .issue_title {
+    background-color: #9bb2ad;
+    /* Light sage background */
+    color: #09332a;
+    /* Dark teal text */
+}
+
+.theme_three .view_button_container {
+    background-color: #9bb2ad;
+}
+
+.theme_three .bottom_row {
+    background-color: #09332a;
+    /* Dark teal background */
+    color: #9bb2ad;
+    /* Light sage text color */
+}
+
+.theme_three .divider,
+.theme_three .bottom_divider {
+    border-color: #9bb2ad;
+    /* Light sage for dividers */
+}
+
+.theme_three .issue_title,
+.theme_three .top_row {
+    border-color: #09332a;
+}
+
+.theme_three .tech_item {
+    background-color: #000;
+    /* Black for all themes */
+    color: #9bb2ad;
+}
+
+/* New theme for multiples of 4 */
+.theme_four {
+    background-color: #f7f9f5;
+    border-color: #e10d37;
+}
+
+.theme_four .issue_title {
+    background-color: #f7e6ea;
+    /* Light pink background */
+    color: #e10d37;
+    /* Dark red text */
+}
+
+.theme_four .view_button_container {
+    background-color: #f7e6ea;
+}
+
+.theme_four .bottom_row {
+    background-color: #e10d37;
+    /* Dark red background */
+    color: #f7e6ea;
+    /* Light pink text color */
+}
+
+.theme_four .divider,
+.theme_four .bottom_divider {
+    border-color: #f7e6ea;
+    /* Light pink for dividers */
+}
+
+.theme_four .issue_title,
+.theme_four .top_row {
+    border-color: #e10d37;
+}
+
+.theme_four .tech_item {
+    background-color: #000;
+    /* Black for all themes */
+    color: #f7e6ea;
+}
+
+/* Theme-specific overlay colors */
+.theme_one .image_container::after {
+    background-color: #f3d06d;
+    /* Light gold */
+}
+
+.theme_two .image_container::after {
+    background-color: #d1d3ed;
+    /* Light blue */
+}
+
+.theme_three .image_container::after {
+    background-color: #9bb2ad;
+    /* Light sage */
+}
+
+.theme_four .image_container::after {
+    background-color: #f7e6ea;
+    /* Light pink */
 }
