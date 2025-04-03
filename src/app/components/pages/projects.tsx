@@ -35,53 +35,58 @@ export default function Projects({ updateCategoryHeader }: ProjectsProps) {
             date: "2024-09-15",
             category: "Web Development",
             image: "/techtonic.png",
-            techstack: ["Django", "Javascript", "CSS Modules"],
+            techstack: ["Django", "Javascript", "CSS"],
             link: "https://github.com/shivamrawat1/techtonic"
         },
         {
             id: 2,
-            title: "Task Manager API",
-            description: "A RESTful API for task management with authentication and authorization",
-            date: "2023-06-10",
-            category: "Backend",
-            image: "/bg.png",
-            techstack: ["Node.js", "Express", "MongoDB", "JWT"]
+            title: "Advosub.ai",
+            description: "A web application for generating custom newsletters on latest news and research that matches your interest.",
+            date: "2025-01-10",
+            category: "Web App",
+            image: "/advosub.png",
+            techstack: ["Flask", "Python", "Perplexity API", "OpenAI API"],
+            link: "https://github.com/shivamrawat1/Advosub.ai"
         },
         {
             id: 3,
-            title: "E-commerce Platform",
-            description: "Full-stack e-commerce platform with product listings, cart and checkout functionality",
-            date: "2023-04-01",
-            category: "Full Stack",
-            image: "/bg.png",
-            techstack: ["React", "Redux", "Node.js", "Express", "MongoDB", "Stripe API"]
+            title: "TipTap Extensions",
+            description: "Implemented custom extensions for the TipTap editor.",
+            date: "2025-02-03",
+            category: "Web App",
+            image: "/tiptap.png",
+            techstack: ["React", "Typescript", "Tailwind CSS"],
+            link: "https://github.com/shivamrawat1/tiptap-extensions-backend"
         },
         {
             id: 4,
-            title: "AI Image Generator",
-            description: "Web application that generates images from text descriptions using AI",
-            date: "2023-05-20",
-            category: "AI/ML",
-            image: "/bg.png",
-            techstack: ["Python", "Flask", "React", "OpenAI API"]
+            title: "ReadMePlease.ai",
+            description: "A Flask web application that generates Markdown documents by processing videos or GitHub repositories as input. ",
+            date: "2024-08-20",
+            category: "Web App",
+            image: "/readmeplease.png",
+            techstack: ["Python", "Flask", "OpenAI API"],
+            link: "https://github.com/shivamrawat1/READMEplease.ai"
         },
         {
             id: 5,
-            title: "Mobile Fitness App",
-            description: "Cross-platform mobile app for tracking workouts and nutrition",
-            date: "2023-07-12",
-            category: "Mobile",
-            image: "/bg.png",
-            techstack: ["React Native", "Firebase", "Redux", "Expo"]
+            title: "Task Scheduler",
+            description: "A task scheduler that schedules tasks based on multiple constraints",
+            date: "2023-11-01",
+            category: "Algorithm",
+            image: "/taskscheduler.png",
+            techstack: ["Python"],
+            link: "https://github.com/shivamrawat1/python-task-scheduler"
         },
         {
             id: 6,
-            title: "Blockchain Voting System",
-            description: "Secure voting platform built on blockchain technology",
-            date: "2023-03-15",
-            category: "Blockchain",
-            image: "/bg.png",
-            techstack: ["Solidity", "Ethereum", "Web3.js", "React"]
+            title: "Accent Classification",
+            description: "A classification model that predicts the accent of a speaker based on their speech",
+            date: "2024-04-01",
+            category: "ML",
+            image: "/accent.png",
+            techstack: ["Python", "Pytorch", "Keras"],
+            link: "https://github.com/shivamrawat1/accent-classification"
         }
     ];
 

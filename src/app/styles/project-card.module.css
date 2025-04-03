@@ -17,7 +17,7 @@
 }
 
 .issue_title {
-    width: 40px;
+    width: 3rem;
     /* Fixed width */
     min-width: unset;
     /* Remove min-width */
