@@ -1,16 +1,12 @@
 .project_card {
     width: 30vw;
-    height: 80vh;
+    min-width: 400px;
+    height: 85vh;
     background-color: #FFF7F4;
     border: 1px solid #000;
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    transition: transform 0.2s;
-}
-
-.project_card:hover {
-    transform: translateY(-5px);
 }
 
 /* Top row with title and image */

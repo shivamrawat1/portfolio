@@ -2,6 +2,7 @@
     position: relative;
     width: 100%;
     overflow: hidden;
+    height: 100%;
     /* Hide overflow at container level */
     padding: 1rem 0;
 }
@@ -292,4 +293,11 @@
     flex: 0 0 auto;
     user-select: none;
     /* Prevent text selection */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .projects_scroll {
+        gap: 1rem;
+    }
 }
