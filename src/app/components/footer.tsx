@@ -1,7 +1,8 @@
 import Link from 'next/link';
 import styles from '../styles/footer.module.css';
 import mainStyles from '../styles/main.module.css';
-import { FaInstagram, FaTwitter, FaYoutube, FaLinkedin } from 'react-icons/fa';
+import { FaInstagram, FaTwitter, FaYoutube, FaLinkedin, FaGithub } from 'react-icons/fa';
+import { SiSubstack } from 'react-icons/si';
 
 export default function Footer() {
     return (
@@ -23,18 +24,24 @@ export default function Footer() {
                         <Link href="https://twitter.com/scivam_" aria-label="Twitter">
                             <FaTwitter className={styles.social_icon} />
                         </Link>
-                        <Link href="https://youtube.com/shivamrawat108" aria-label="YouTube">
+                        <Link href="https://www.youtube.com/@shivamrawat108" aria-label="YouTube">
                             <FaYoutube className={styles.social_icon} />
                         </Link>
                         <Link href="https://www.linkedin.com/in/shivamrawat1/" aria-label="LinkedIn">
                             <FaLinkedin className={styles.social_icon} />
+                        </Link>
+                        <Link href="https://github.com/shivamrawat1" aria-label="GitHub">
+                            <FaGithub className={styles.social_icon} />
+                        </Link>
+                        <Link href="https://shivamrawat1.substack.com" aria-label="Substack">
+                            <SiSubstack className={styles.social_icon} />
                         </Link>
                     </div>
                 </div>
             </div>
 
             <div className={styles.footer_bottom}>
-                <p>Shivam Rawat © {new Date().getFullYear()} | Designed by Shivam Rawat</p>
+                <p>Shivam Rawat © {new Date().getFullYear()}</p>
             </div>
         </footer>
     );
