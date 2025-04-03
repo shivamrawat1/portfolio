@@ -17,10 +17,18 @@ export default function WritingPage({ updateCategoryHeader }: WritingPageProps) 
         {
             id: 1,
             title: "Biowarfare Against the Dengue Virus",
-            description: "A simple genetic tweak to prevent dengue epidemics.",
+            description: "A simple genetic tweak to prevent dengue epidemics",
             date: "21/04/23",
             category: "genetics",
             url: "https://shivamrawat1.substack.com/p/biowarfare-against-the-dengue-virus"
+        },
+        {
+            id: 2,
+            title: "Using Pollination Networks to Aid Conservation Efforts in Redlined Neighborhoods",
+            description: "Linking ecological function and environmental justice through urban biodiversity",
+            date: "22/11/22",
+            category: "evolution",
+            url: "https://shivamrawat1.substack.com/p/using-pollination-networks-to-aid"
         }
     ], []);
 
