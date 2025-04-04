@@ -99,7 +99,8 @@ function ConnectionLine({ start, end, visible }: {
     end: [number, number, number],
     visible: boolean
 }) {
-    if (!visible) return null;
+    // Create a reference for positioning - moved before conditional return
+    const groupRef = useRef<THREE.Group>(null);
 
     // Calculate midpoint
     const midX = (start[0] + end[0]) / 2;
@@ -113,10 +114,7 @@ function ConnectionLine({ start, end, visible }: {
         Math.pow(end[2] - start[2], 2)
     );
 
-    // Create a reference for positioning
-    const groupRef = useRef<THREE.Group>(null);
-
-    // Position and orient the cylinder on mount and when props change
+    // Position and orient the cylinder on mount and when props change - moved before conditional return
     useEffect(() => {
         if (groupRef.current) {
             // Position at midpoint
@@ -140,6 +138,8 @@ function ConnectionLine({ start, end, visible }: {
             groupRef.current.setRotationFromQuaternion(quaternion);
         }
     }, [start, end, midX, midY, midZ]);
+
+    if (!visible) return null;
 
     return (
         <group ref={groupRef}>
