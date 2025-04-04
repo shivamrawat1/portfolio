@@ -365,7 +365,7 @@ export default function FriendsPage() {
         // Extract all unique tags
         const tags = Array.from(new Set(friendsData.flatMap(friend => friend.tags)));
         setAllTags(tags);
-    }, []);
+    }, [colorPalette]);
 
     // Toggle tag selection
     const toggleTag = (tag: string) => {
