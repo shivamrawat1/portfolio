@@ -12,6 +12,7 @@ interface HeaderProps {
 export default function Header({ currentPage, setCurrentPage }: HeaderProps) {
     const [displayText, setDisplayText] = useState("s4m0r3t");
     const decodingTimerRef = useRef<NodeJS.Timeout | null>(null);
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
     const startDecoding = () => {
         // Define the decoding steps to show the transformation clearly
@@ -66,6 +67,15 @@ export default function Header({ currentPage, setCurrentPage }: HeaderProps) {
         };
     }, []);
 
+    const toggleMobileMenu = () => {
+        setIsMobileMenuOpen(!isMobileMenuOpen);
+    };
+
+    const handleNavClick = (page: string) => {
+        setCurrentPage(page);
+        setIsMobileMenuOpen(false); // Close mobile menu after selection
+    };
+
     return (
         <div className={styles.header_container}>
             <div className={styles.logo_container}>
@@ -90,34 +100,42 @@ export default function Header({ currentPage, setCurrentPage }: HeaderProps) {
             </div>
 
             <div className={styles.nav_container}>
-                <nav className={styles.navigation}>
+                <button
+                    className={styles.mobile_menu_button}
+                    onClick={toggleMobileMenu}
+                    aria-label="Toggle navigation menu"
+                >
+                    {isMobileMenuOpen ? "✕" : "☰"}
+                </button>
+
+                <nav className={`${styles.navigation} ${isMobileMenuOpen ? styles.open : ""}`}>
                     <button
                         className={`${styles.nav_item} ${currentPage === "about" ? styles.active : ""}`}
-                        onClick={() => setCurrentPage("about")}
+                        onClick={() => handleNavClick("about")}
                     >
                         About
                     </button>
                     <button
                         className={`${styles.nav_item} ${currentPage === "writing" ? styles.active : ""}`}
-                        onClick={() => setCurrentPage("writing")}
+                        onClick={() => handleNavClick("writing")}
                     >
                         Writing
                     </button>
                     <button
                         className={`${styles.nav_item} ${currentPage === "projects" ? styles.active : ""}`}
-                        onClick={() => setCurrentPage("projects")}
+                        onClick={() => handleNavClick("projects")}
                     >
                         Projects
                     </button>
                     <button
                         className={`${styles.nav_item} ${currentPage === "tidbits" ? styles.active : ""}`}
-                        onClick={() => setCurrentPage("tidbits")}
+                        onClick={() => handleNavClick("tidbits")}
                     >
                         Tidbits
                     </button>
                     <button
                         className={`${styles.nav_item} ${currentPage === "friends" ? styles.active : ""}`}
-                        onClick={() => setCurrentPage("friends")}
+                        onClick={() => handleNavClick("friends")}
                     >
                         Friends
                     </button>
