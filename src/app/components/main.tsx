@@ -8,6 +8,7 @@ import HomePage from "./pages/home";
 import Projects from "./pages/projects";
 import WritingPage from "./pages/writing";
 import AboutPage from "./pages/about";
+import FriendsPage from "./pages/friends";
 
 export default function Main() {
     const [currentPage, setCurrentPage] = useState("home");
@@ -65,6 +66,7 @@ export default function Main() {
                 {currentPage === "about" && <AboutPage />}
                 {currentPage === "writing" && <WritingPage updateCategoryHeader={updateCategoryHeader} />}
                 {currentPage === "projects" && <Projects updateCategoryHeader={updateCategoryHeader} />}
+                {currentPage === "friends" && <FriendsPage />}
             </main>
 
             <div className={styles.footer_container}>

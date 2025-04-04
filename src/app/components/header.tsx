@@ -113,6 +113,12 @@ export default function Header({ currentPage, setCurrentPage }: HeaderProps) {
                     >
                         Projects
                     </button>
+                    <button
+                        className={`${styles.nav_item} ${currentPage === "friends" ? styles.active : ""}`}
+                        onClick={() => setCurrentPage("friends")}
+                    >
+                        Friends
+                    </button>
                 </nav>
             </div>
         </div>

@@ -1,0 +1,135 @@
+.friends_container {
+    display: flex;
+    width: 100%;
+    height: 80vh;
+    position: relative;
+}
+
+.visualization_container {
+    flex: 1;
+    height: 100%;
+    background-color: #FFF7F4;
+    position: relative;
+}
+
+.filter_sidebar {
+    width: 300px;
+    height: 100%;
+    padding: 1.5rem;
+    border-left: 1px solid #000;
+    background-color: #FFF7F4;
+    overflow-y: auto;
+}
+
+.filter_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid #000;
+}
+
+.filter_header h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    margin: 0;
+}
+
+.clear_filter {
+    background: none;
+    border: none;
+    font-size: 0.9rem;
+    cursor: pointer;
+    color: #666;
+    transition: color 0.2s;
+}
+
+.clear_filter:hover {
+    color: #000;
+}
+
+.tags_container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+}
+
+.tag_button {
+    background: none;
+    border: 1px solid #000;
+    padding: 0.5rem 0.75rem;
+    border-radius: 0;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: 'Playfair Display', serif;
+}
+
+.tag_button:hover {
+    background-color: #f4d06f;
+    opacity: 0.8;
+}
+
+.tag_button.selected {
+    background-color: #f4d06f;
+}
+
+.friend_info {
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid #000;
+}
+
+.info_text {
+    color: #666;
+    font-size: 0.9rem;
+    font-style: italic;
+}
+
+/* Styling for the 3D nodes */
+.node_label {
+    pointer-events: none;
+    transform: translate3d(-50%, 0, 0);
+    text-align: center;
+    background-color: rgba(255, 247, 244, 0.7);
+    padding: 0.25rem 0.5rem;
+    border-radius: 2px;
+    white-space: nowrap;
+}
+
+.friend_name {
+    font-weight: bold;
+    font-family: 'Playfair Display', serif;
+}
+
+.friend_tags {
+    display: flex;
+    gap: 0.25rem;
+    justify-content: center;
+    margin-top: 0.25rem;
+    flex-wrap: wrap;
+}
+
+.tag {
+    font-size: 0.75rem;
+    color: #666;
+}
+
+@media (max-width: 768px) {
+    .friends_container {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .visualization_container {
+        height: 60vh;
+    }
+
+    .filter_sidebar {
+        width: 100%;
+        border-left: none;
+        border-top: 1px solid #000;
+    }
+}
