@@ -76,6 +76,8 @@ export default function Header({ currentPage, setCurrentPage }: HeaderProps) {
                         width={100}
                         height={100}
                         className={styles.avatar}
+                        onClick={() => setCurrentPage("home")}
+                        style={{ cursor: 'pointer' }}
                     />
                     <span
                         className={styles.logo_text}

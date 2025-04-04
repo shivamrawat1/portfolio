@@ -6,7 +6,7 @@ export default function HomePage() {
         <div className={styles.home_container}>
             <div className={styles.hero_image}>
                 <Image
-                    src="/island.svg"
+                    src="/heroimage.svg"
                     alt="Island illustration"
                     width={1200}
                     height={1200}
