@@ -232,7 +232,9 @@ export default function FriendsPage() {
     const [allTags, setAllTags] = useState<string[]>([]);
 
     // Color palette that matches the website theme
-    const colorPalette = ['#f4d06f', '#e28f83', '#e4c1b3', '#d8a28c', '#fceadd'];
+    const colorPalette = useMemo(() => {
+        return ['#f4d06f', '#e28f83', '#e4c1b3', '#d8a28c', '#fceadd'];
+    }, []);
 
     // Sample friends data with dynamically assigned colors and links
     useEffect(() => {
