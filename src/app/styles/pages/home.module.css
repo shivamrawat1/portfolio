@@ -1,10 +1,24 @@
-.home_container {
+.home_container_wrapper {
+    position: fixed;
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100vw;
     height: 100vh;
     background-color: #FFF7F4;
+    padding: min(1vw, 1vh);
+}
+
+.home_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: calc(100% - 2vmin);
+    height: calc(100% - 2vmin);
+    background-color: #FFF7F4;
+    border: 1px solid black;
+    border-radius: 20px;
+    margin: 2vmin;
 }
 
 .hero_image {
@@ -23,8 +37,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: min(100vw, 100vh);
-    height: min(100vw, 100vh);
+    width: min(80vw, 80vh);
+    height: min(80vw, 80vh);
     aspect-ratio: 1/1;
     /* Force a square */
     padding: 0;
@@ -169,7 +183,6 @@
     opacity: 0.7;
 
 }
-
 
 
 /* Remove this class entirely if not needed */
