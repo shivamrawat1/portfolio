@@ -9,7 +9,7 @@ import Projects from "./pages/projects";
 import WritingPage from "./pages/writing";
 import AboutPage from "./pages/about";
 import FriendsPage from "./pages/friends";
-
+import TidbitsPage from "./pages/tidbits";
 export default function Main() {
     const [currentPage, setCurrentPage] = useState("home");
     const [categoryHeader, setCategoryHeader] = useState<React.ReactNode | null>(null);
@@ -67,6 +67,7 @@ export default function Main() {
                 {currentPage === "writing" && <WritingPage updateCategoryHeader={updateCategoryHeader} />}
                 {currentPage === "projects" && <Projects updateCategoryHeader={updateCategoryHeader} />}
                 {currentPage === "friends" && <FriendsPage />}
+                {currentPage === "tidbits" && <TidbitsPage updateCategoryHeader={updateCategoryHeader} />}
             </main>
 
             <div className={styles.footer_container}>
