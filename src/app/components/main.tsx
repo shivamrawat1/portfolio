@@ -53,16 +53,18 @@ export default function Main() {
 
     return (
         <div className={styles.main_wrapper}>
-            <div className={styles.sticky_nav_container}>
-                <Header currentPage={currentPage} setCurrentPage={setCurrentPage} />
-                {categoryHeader && (
-                    <div className={styles.sticky_category_header}>
-                        {categoryHeader}
-                    </div>
-                )}
-            </div>
+            {currentPage !== "home" && (
+                <div className={styles.sticky_nav_container}>
+                    <Header currentPage={currentPage} setCurrentPage={setCurrentPage} />
+                    {categoryHeader && (
+                        <div className={styles.sticky_category_header}>
+                            {categoryHeader}
+                        </div>
+                    )}
+                </div>
+            )}
             <main ref={mainContentRef} className={styles.main}>
-                {currentPage === "home" && <HomePage />}
+                {currentPage === "home" && <HomePage setCurrentPage={setCurrentPage} />}
                 {currentPage === "about" && <AboutPage />}
                 {currentPage === "writing" && <WritingPage updateCategoryHeader={updateCategoryHeader} />}
                 {currentPage === "projects" && <Projects updateCategoryHeader={updateCategoryHeader} />}
@@ -70,9 +72,11 @@ export default function Main() {
                 {currentPage === "tidbits" && <TidbitsPage updateCategoryHeader={updateCategoryHeader} />}
             </main>
 
-            <div className={styles.footer_container}>
-                <Footer />
-            </div>
+            {currentPage !== "home" && (
+                <div className={styles.footer_container}>
+                    <Footer />
+                </div>
+            )}
         </div>
     );
 }

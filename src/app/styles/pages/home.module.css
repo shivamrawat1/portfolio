@@ -2,10 +2,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
-    height: 90vh;
-    padding: 2rem 0;
-    overflow: hidden;
+    width: 100vw;
+    height: 100vh;
+    background-color: #FFF7F4;
 }
 
 .hero_image {
@@ -15,19 +14,33 @@
     width: 100vw;
     height: 100vh;
     position: relative;
+    padding: 0;
+    margin: 0;
 }
 
-.file_svg {
-    width: 100%;
-    height: auto;
-    object-fit: contain;
-    max-height: 70vh;
-    z-index: 2;
-    /* Apply a mask that creates a soft circular edge */
-    mask-image: radial-gradient(circle, black 10%, transparent 80%);
+.hero_image_container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: min(100vw, 100vh);
+    height: min(100vw, 100vh);
+    aspect-ratio: 1/1;
+    /* Force a square */
+    padding: 0;
+    margin: 0;
+    background-color: #FFF7F4;
 }
 
-/* Levitation animation */
+/* Fallback for browsers that don't support aspect-ratio */
+@supports not (aspect-ratio: 1/1) {
+    .hero_image_container {
+        height: 0;
+        padding-bottom: min(90vw, 90vh);
+    }
+}
+
+/* Levitation animation - defined first */
 @keyframes levitate {
     0% {
         transform: translateY(0);
@@ -42,8 +55,132 @@
     }
 }
 
+/* SVG styling with explicit animation properties */
+.file_svg {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    z-index: 2;
+    mask-image: radial-gradient(circle, black 10%, transparent 80%);
+    /* Use explicit animation properties */
+    animation-name: levitate;
+    animation-duration: 3s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    animation-delay: 0s;
+    /* Ensure synchronized start */
+    animation-fill-mode: both;
+    will-change: transform;
+    /* Performance optimization */
+}
+
+/* Ensure consistent positioning of clickable areas */
+.clickable_areas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 3;
+    /* Use same animation but with a normal direction */
+    animation-name: levitate;
+    animation-duration: 3s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    animation-delay: 0s;
+    animation-fill-mode: both;
+    animation-direction: normal;
+    /* Explicitly set normal direction */
+    will-change: transform;
+    /* Ensure no existing transform is applied */
+    transform: none;
+}
+
+.clickable_area {
+    position: absolute;
+    display: block;
+    border-radius: 2%;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    pointer-events: auto;
+    z-index: 10;
+    /* No animation or transform */
+    animation: none;
+    transform: none;
+    box-sizing: border-box;
+}
+
+.clickable_area span {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+/* Fixed position values - using exact percentages */
+.tidbits_area {
+    top: 23%;
+    left: 10%;
+    width: 20%;
+    height: 27%;
+
+}
+
+.writing_area {
+    top: 60%;
+    left: 8%;
+    width: 39%;
+    height: 16%;
+
+}
+
+.friends_area {
+    top: 40%;
+    left: 30%;
+    width: 30%;
+    height: 20%;
+
+}
+
+.projects_area {
+    top: 28%;
+    left: 70%;
+    width: 20%;
+    height: 25%;
+
+}
+
+.about_area {
+    top: 53%;
+    left: 60%;
+    width: 34%;
+    height: 22%;
+
+}
+
+/* Hover effects */
+.clickable_area:hover {
+    opacity: 0.7;
+
+}
+
+
+
+/* Remove this class entirely if not needed */
 .levitate {
-    animation: levitate 3s ease-in-out infinite;
+    animation-name: levitate;
+    animation-duration: 3s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    animation-delay: 0s;
+    /* Ensure synchronized start */
+    animation-fill-mode: both;
 }
 
 .hero_image::before {

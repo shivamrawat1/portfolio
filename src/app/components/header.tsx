@@ -92,12 +92,6 @@ export default function Header({ currentPage, setCurrentPage }: HeaderProps) {
             <div className={styles.nav_container}>
                 <nav className={styles.navigation}>
                     <button
-                        className={`${styles.nav_item} ${currentPage === "home" ? styles.active : ""}`}
-                        onClick={() => setCurrentPage("home")}
-                    >
-                        Home
-                    </button>
-                    <button
                         className={`${styles.nav_item} ${currentPage === "about" ? styles.active : ""}`}
                         onClick={() => setCurrentPage("about")}
                     >
