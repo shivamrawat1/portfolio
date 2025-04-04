@@ -6,10 +6,10 @@ export default function HomePage() {
         <div className={styles.home_container}>
             <div className={styles.hero_image}>
                 <Image
-                    src="/file1.svg"
-                    alt="File illustration"
-                    width={950}
-                    height={100}
+                    src="/island.svg"
+                    alt="Island illustration"
+                    width={1200}
+                    height={1200}
                     priority
                     className={`${styles.file_svg} ${styles.levitate}`}
                 />
