@@ -30,6 +30,16 @@ export default function Projects({ updateCategoryHeader }: ProjectsProps) {
     const projectsData: Project[] = [
         {
             id: 1,
+            title: "Engram",
+            description: "Engram is an intelligent, AI-powered companion designed to make your learning faster, deeper, and longer-lasting — by blending the Science of Learning with cutting-edge AI technologies for a truly adaptive study experience.",
+            date: "2025-03-15",
+            category: "Web Development",
+            image: "/engram.png",
+            techstack: ["Django", "Javascript", "CSS"],
+            link: "https://github.com/shivamrawat1/engram"
+        },
+        {
+            id: 2,
             title: "Techtonic",
             description: "TechTonic transforms technical interview preparation by focusing not just on solving coding problems but on structuring thought processes for clear, logical communication. Through AI-driven, structured feedback based on proven frameworks like UMPIRE, we help you identify and improve weaknesses, enhance problem-solving skills, and build confidence for high-pressure interview scenarios, all at an affordable cost.t",
             date: "2024-09-15",
@@ -39,7 +49,17 @@ export default function Projects({ updateCategoryHeader }: ProjectsProps) {
             link: "https://github.com/shivamrawat1/techtonic"
         },
         {
-            id: 2,
+            id: 3,
+            title: "BeeCode",
+            description: "This project fine-tunes the SegFormer-B2 model using Hugging Face's transformers and datasets libraries for semantic segmentation tasks. The code handles preprocessing, dataset loading (in COCO format), custom metrics computation (IoU), and training using the Trainer API.",
+            date: "2025-04-30",
+            category: "Machine Learning",
+            image: "/beecode.png",
+            techstack: ["Python", "Pytorch", "Hugging Face", "Computer Vision"],
+            link: "https://github.com/shivamrawat1/BeeCode"
+        },
+        {
+            id: 4,
             title: "Advosub.ai",
             description: "A web application for generating custom newsletters on latest news and research that matches your interest.",
             date: "2025-01-10",
@@ -49,7 +69,7 @@ export default function Projects({ updateCategoryHeader }: ProjectsProps) {
             link: "https://github.com/shivamrawat1/Advosub.ai"
         },
         {
-            id: 3,
+            id: 5,
             title: "TipTap Extensions",
             description: "Implemented custom extensions for the TipTap editor.",
             date: "2025-02-03",
@@ -59,7 +79,7 @@ export default function Projects({ updateCategoryHeader }: ProjectsProps) {
             link: "https://github.com/shivamrawat1/tiptap-extensions-backend"
         },
         {
-            id: 4,
+            id: 6,
             title: "ReadMePlease.ai",
             description: "A Flask web application that generates Markdown documents by processing videos or GitHub repositories as input. ",
             date: "2024-08-20",
@@ -69,7 +89,7 @@ export default function Projects({ updateCategoryHeader }: ProjectsProps) {
             link: "https://github.com/shivamrawat1/READMEplease.ai"
         },
         {
-            id: 5,
+            id: 7,
             title: "Task Scheduler",
             description: "A task scheduler that schedules tasks based on multiple constraints",
             date: "2023-11-01",
@@ -79,7 +99,7 @@ export default function Projects({ updateCategoryHeader }: ProjectsProps) {
             link: "https://github.com/shivamrawat1/python-task-scheduler"
         },
         {
-            id: 6,
+            id: 8,
             title: "Accent Classification",
             description: "A classification model that predicts the accent of a speaker based on their speech",
             date: "2024-04-01",
