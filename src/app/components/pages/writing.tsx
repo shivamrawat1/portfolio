@@ -16,6 +16,14 @@ export default function WritingPage({ updateCategoryHeader }: WritingPageProps) 
     const articles = useMemo(() => [
         {
             id: 1,
+            title: "I Walked the Runway",
+            description: "My plan to fight my limiting beliefs",
+            date: "2/06/25",
+            category: "self-improvement",
+            url: "https://shivamrawat1.substack.com/p/i-walked-the-runway"
+        },
+        {
+            id: 2,
             title: "Biowarfare Against the Dengue Virus",
             description: "A simple genetic tweak to prevent dengue epidemics",
             date: "21/04/23",
@@ -23,7 +31,7 @@ export default function WritingPage({ updateCategoryHeader }: WritingPageProps) 
             url: "https://shivamrawat1.substack.com/p/biowarfare-against-the-dengue-virus"
         },
         {
-            id: 2,
+            id: 3,
             title: "Using Pollination Networks to Aid Conservation Efforts in Redlined Neighborhoods",
             description: "Linking ecological function and environmental justice through urban biodiversity",
             date: "22/11/22",
