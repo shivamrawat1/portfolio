@@ -45,7 +45,7 @@ export default function AboutPage() {
                         </Link>{' '}
                         awards—and even a{' '}
                         <Link href="https://x.com/narendramodi/status/1485612096130002946?lang=en" className={styles.highlight_link}>tweet</Link> from
-                        the President of India.
+                        the Prime Minister of India.
                     </p>
                     <p>
                         For university, I made a last-minute decision to attend{' '}
@@ -53,12 +53,12 @@ export default function AboutPage() {
                         country each semester—including the US, South Korea, Taiwan, India, Argentina, the UK,
                         and Germany—broadened my academic and cultural experiences. I initially pursued
                         Natural Science but, after discovering wet labs weren&apos;t for me, switched to Computer
-                        Science as my major.
+                        Science.
                     </p>
                     <p>
                         Now, I strive to become a{' '}
                         <Link href="https://www.urbandictionary.com/define.php?term=Cracked" className={styles.highlight_link}>cracked</Link>{' '}
-                        developer and build products and services that can positively impact millions of
+                        developer and build products and services that can impact millions of
                         people.
                     </p>
                 </div>

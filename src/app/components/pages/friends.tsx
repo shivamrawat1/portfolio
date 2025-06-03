@@ -417,7 +417,7 @@ export default function FriendsPage() {
                 </div>
 
                 <div className={styles.friend_info}>
-                    <p className={styles.info_text}>Click on a friend node to visit their page. This section is currently under construction.</p>
+                    <p className={styles.info_text}>Click on a friend node to visit their page. This section is currently under construction and the people are not real.</p>
                 </div>
             </div>
         </div>
