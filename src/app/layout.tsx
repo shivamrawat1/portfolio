@@ -6,7 +6,7 @@ import ClientLayout from "./client-layout";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Your Portfolio",
+  title: "Shivam Rawat",
   description: "Personal portfolio website",
 };
 
