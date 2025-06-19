@@ -58,7 +58,7 @@ export default function TidbitsPage({ updateCategoryHeader }: TidbitsPageProps) 
                 "Like people and they will like you back",
                 "Focus on work and skills, money will follow",
                 "Maximise growth",
-                "Interested in everything/everyone (atleast in spirit)"
+                "Interested in everything/everyone (at least in spirit)"
             ]
         },
         {
