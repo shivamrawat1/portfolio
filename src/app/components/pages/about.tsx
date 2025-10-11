@@ -56,10 +56,7 @@ export default function AboutPage() {
                         Science.
                     </p>
                     <p>
-                        Now, I strive to become a{' '}
-                        <Link href="https://www.urbandictionary.com/define.php?term=Cracked" className={styles.highlight_link}>cracked</Link>{' '}
-                        developer and build products and services that can impact millions of
-                        people.
+                        Now, I strive to become a technical generalist and work on problems with high impact.
                     </p>
                 </div>
             </div>

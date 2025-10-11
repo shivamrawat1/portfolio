@@ -61,13 +61,6 @@ export default function TidbitsPage({ updateCategoryHeader }: TidbitsPageProps) 
                 "Interested in everything/everyone (at least in spirit)"
             ]
         },
-        {
-            id: 4,
-            title: "Random",
-            frontContent: "Interesting facts and tidbits that don't fit elsewhere",
-            backContent: [
-            ]
-        }
     ];
 
     const toggleCard = (cardId: number) => {

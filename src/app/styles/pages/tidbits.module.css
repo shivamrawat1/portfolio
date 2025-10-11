@@ -10,7 +10,7 @@
 
 .cards_grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
     max-width: 1400px;
     width: 100%;
@@ -107,8 +107,7 @@
 /* Responsive adjustments */
 @media (max-width: 1200px) {
     .cards_grid {
-        grid-template-columns: repeat(2, 1fr);
-        grid-template-rows: repeat(2, 1fr);
+        grid-template-columns: repeat(3, 1fr);
         height: 80vh;
         gap: 1.5rem;
     }
@@ -122,7 +121,7 @@
 
     .cards_grid {
         grid-template-columns: 1fr;
-        grid-template-rows: repeat(4, 1fr);
+        grid-template-rows: repeat(3, 1fr);
         gap: 1rem;
         height: auto;
         max-height: none;
