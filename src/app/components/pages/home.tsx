@@ -11,7 +11,7 @@ export default function HomePage({ setCurrentPage }: HomePageProps) {
     // Reference to the SVG container to help with positioning
     const svgContainerRef = useRef<HTMLDivElement>(null);
     const audioRef = useRef<HTMLAudioElement | null>(null);
-    const [muted, setMuted] = useState(false);
+    const [muted, setMuted] = useState(true);
 
     const handleNavigation = (page: string) => (e: React.MouseEvent) => {
         e.preventDefault();
@@ -78,6 +78,8 @@ export default function HomePage({ setCurrentPage }: HomePageProps) {
                     preload="auto"
                     loop
                     autoPlay
+                    muted
+                    playsInline
                 />
                 <button
                     aria-label={muted ? "Unmute background audio" : "Mute background audio"}
