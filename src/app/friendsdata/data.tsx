@@ -46,6 +46,14 @@ export const friendsData = [
         color: "#fceadd",
         link: "https://www.stephaniefroebel.com/",
         image: "/headshots/Stephanie Froebel.jpg"
+    },
+    {
+        id: 7,
+        name: "Jeevan Bhatta",
+        tags: ["Travel", "Technology", "Sports", "Nature", "Social Good"],
+        color: "#fceadd",
+        link: "https://www.linkedin.com/in/jeevancs/",
+        image: "/headshots/Jeevan Bhatta.jpeg"
     }
 ];
 
