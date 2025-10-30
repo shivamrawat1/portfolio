@@ -34,7 +34,7 @@ export default function Projects({ updateCategoryHeader }: ProjectsProps) {
             description: "Engram is an intelligent, AI-powered companion designed to make your learning faster, deeper, and longer-lasting — by blending the Science of Learning with cutting-edge AI technologies for a truly adaptive study experience.",
             date: "2025-03-15",
             category: "Web Development",
-            image: "/engram.png",
+            image: "/projectimages/engram.png",
             techstack: ["Django", "Javascript", "CSS"],
             link: "https://github.com/shivamrawat1/engram"
         },
@@ -44,7 +44,7 @@ export default function Projects({ updateCategoryHeader }: ProjectsProps) {
             description: "TechTonic transforms technical interview preparation by focusing not just on solving coding problems but on structuring thought processes for clear, logical communication. Through AI-driven, structured feedback based on proven frameworks like UMPIRE, we help you identify and improve weaknesses, enhance problem-solving skills, and build confidence for high-pressure interview scenarios, all at an affordable cost.t",
             date: "2024-09-15",
             category: "Web Development",
-            image: "/techtonic.png",
+            image: "/projectimages/techtonic.png",
             techstack: ["Django", "Javascript", "CSS"],
             link: "https://github.com/shivamrawat1/techtonic"
         },
@@ -54,7 +54,7 @@ export default function Projects({ updateCategoryHeader }: ProjectsProps) {
             description: "This project fine-tunes the SegFormer-B2 model using Hugging Face's transformers and datasets libraries for semantic segmentation tasks. The code handles preprocessing, dataset loading (in COCO format), custom metrics computation (IoU), and training using the Trainer API.",
             date: "2025-04-30",
             category: "Machine Learning",
-            image: "/beecode.png",
+            image: "/projectimages/beecode.png",
             techstack: ["Python", "Pytorch", "Hugging Face", "Computer Vision"],
             link: "https://github.com/shivamrawat1/BeeCode"
         },
@@ -64,7 +64,7 @@ export default function Projects({ updateCategoryHeader }: ProjectsProps) {
             description: "A web application for generating custom newsletters on latest news and research that matches your interest.",
             date: "2025-01-10",
             category: "Web App",
-            image: "/advosub.png",
+            image: "/projectimages/advosub.png",
             techstack: ["Flask", "Python", "Perplexity API", "OpenAI API"],
             link: "https://github.com/shivamrawat1/Advosub.ai"
         },
@@ -74,7 +74,7 @@ export default function Projects({ updateCategoryHeader }: ProjectsProps) {
             description: "Implemented custom extensions for the TipTap editor.",
             date: "2025-02-03",
             category: "Web App",
-            image: "/tiptap.png",
+            image: "/projectimages/tiptap.png",
             techstack: ["React", "Typescript", "Tailwind CSS"],
             link: "https://github.com/shivamrawat1/tiptap-extensions-backend"
         },
@@ -84,7 +84,7 @@ export default function Projects({ updateCategoryHeader }: ProjectsProps) {
             description: "A Flask web application that generates Markdown documents by processing videos or GitHub repositories as input. ",
             date: "2024-08-20",
             category: "Web App",
-            image: "/readmeplease.png",
+            image: "/projectimages/readmeplease.png",
             techstack: ["Python", "Flask", "OpenAI API"],
             link: "https://github.com/shivamrawat1/READMEplease.ai"
         },
@@ -94,7 +94,7 @@ export default function Projects({ updateCategoryHeader }: ProjectsProps) {
             description: "A task scheduler that schedules tasks based on multiple constraints",
             date: "2023-11-01",
             category: "Algorithm",
-            image: "/taskscheduler.png",
+            image: "/projectimages/taskscheduler.png",
             techstack: ["Python"],
             link: "https://github.com/shivamrawat1/python-task-scheduler"
         },
@@ -104,7 +104,7 @@ export default function Projects({ updateCategoryHeader }: ProjectsProps) {
             description: "A classification model that predicts the accent of a speaker based on their speech",
             date: "2024-04-01",
             category: "ML",
-            image: "/accent.png",
+            image: "/projectimages/accent.png",
             techstack: ["Python", "Pytorch", "Keras"],
             link: "https://github.com/shivamrawat1/accent-classification"
         }
