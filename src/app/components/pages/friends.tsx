@@ -3,8 +3,9 @@
 import { useState, useEffect, useRef, useMemo } from "react";
 import styles from "../../styles/pages/friends.module.css";
 import { Canvas, useFrame } from '@react-three/fiber';
-import { OrbitControls, Html } from '@react-three/drei';
+import { OrbitControls, Html, Line } from '@react-three/drei';
 import * as THREE from 'three';
+import { friendsData } from "../../friendsdata/data";
 
 // Define the Friend interface with link property
 interface Friend {
@@ -14,30 +15,7 @@ interface Friend {
     position: [number, number, number]; // [x, y, z]
     color?: string; // Optional color for variety
     link: string; // URL to redirect to when clicked
-}
-
-// Simple SVG placeholder creator
-function createPlaceholderSVG(name: string, color: string = "#f4d06f"): string {
-    // Get initials from name
-    const initials = name
-        .split(' ')
-        .map(word => word[0] || '')
-        .join('')
-        .toUpperCase()
-        .substring(0, 2);
-
-    // Create SVG with dynamic initials and color
-    const svgContent = `
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
-      <circle cx="100" cy="100" r="100" fill="${color}" />
-      <circle cx="100" cy="70" r="30" fill="#FFF7F4" />
-      <path d="M55,180 C55,120 145,120 145,180" fill="#FFF7F4" />
-      <text x="100" y="105" font-family="Arial" font-size="45" font-weight="bold" fill="#000" text-anchor="middle">${initials}</text>
-    </svg>
-  `;
-
-    // Convert SVG to data URL
-    return `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svgContent.trim())}`;
+    image: string; // Image URL
 }
 
 // Node component that uses SVG texture
@@ -46,48 +24,46 @@ function FriendNode({ friend, isVisible, onClick }: {
     isVisible: boolean,
     onClick: (link: string) => void
 }) {
-    const meshRef = useRef<THREE.Mesh>(null);
-
-    // Create SVG placeholder for this friend
-    const svgDataUrl = useMemo(() =>
-        createPlaceholderSVG(friend.name, friend.color),
-        [friend.name, friend.color]
-    );
-
-    // Create texture from SVG
-    const texture = useMemo(() => {
-        const loader = new THREE.TextureLoader();
-        return loader.load(svgDataUrl);
-    }, [svgDataUrl]);
+    const groupRef = useRef<THREE.Group>(null);
 
     // Simple animation
     useFrame((state) => {
-        if (meshRef.current) {
-            meshRef.current.rotation.y += 0.005;
-            meshRef.current.position.y += Math.sin(state.clock.getElapsedTime() * 0.5) * 0.005;
+        if (groupRef.current) {
+            const baseY = friend.position[1];
+            groupRef.current.position.y = baseY + Math.sin(state.clock.getElapsedTime() * 0.5) * 0.1;
         }
     });
 
     if (!isVisible) return null;
 
     return (
-        <group position={friend.position}>
-            <mesh
-                ref={meshRef}
-                onClick={() => onClick(friend.link)}
-                onPointerOver={() => document.body.style.cursor = 'pointer'}
-                onPointerOut={() => document.body.style.cursor = 'default'}
+        <group ref={groupRef} position={friend.position}>
+            <Html
+                distanceFactor={10}
+                position={[0, 0, 0]}
+                className={styles.node_label}
+                style={{ pointerEvents: 'auto' }}
+                onPointerOver={() => { document.body.style.cursor = 'pointer'; }}
+                onPointerOut={() => { document.body.style.cursor = 'default'; }}
             >
-                <sphereGeometry args={[1, 32, 32]} />
-                <meshStandardMaterial map={texture} />
-            </mesh>
-            <Html distanceFactor={10} position={[0, -1.5, 0]} className={styles.node_label}>
-                <div className={styles.friend_name}>{friend.name}</div>
-                <div className={styles.friend_tags}>
-                    {friend.tags.map((tag, index) => (
-                        <span key={index} className={styles.tag}>#{tag}</span>
-                    ))}
-                </div>
+                <a
+                    href={friend.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{ textDecoration: 'none' }}
+                >
+                    <div style={{ display: 'flex', alignItems: 'stretch', width: '280px', background: '#fff7f4', border: '1px solid #ead9d1', borderRadius: '10px', overflow: 'hidden', boxShadow: '0 2px 6px rgba(0,0,0,0.06)' }}>
+                        <img src={friend.image} alt={friend.name} style={{ width: '50%', height: '100%', objectFit: 'cover' }} />
+                        <div style={{ padding: '8px 10px', display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: '6px', width: '50%' }}>
+                            <div className={styles.friend_name}>{friend.name}</div>
+                            <div className={styles.friend_tags}>
+                                {friend.tags.map((tag, index) => (
+                                    <span key={index} className={styles.tag}>#{tag}</span>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                </a>
             </Html>
         </group>
     );
@@ -99,55 +75,15 @@ function ConnectionLine({ start, end, visible }: {
     end: [number, number, number],
     visible: boolean
 }) {
-    // Create a reference for positioning - moved before conditional return
-    const groupRef = useRef<THREE.Group>(null);
-
-    // Calculate midpoint
-    const midX = (start[0] + end[0]) / 2;
-    const midY = (start[1] + end[1]) / 2;
-    const midZ = (start[2] + end[2]) / 2;
-
-    // Calculate distance between points
-    const distance = Math.sqrt(
-        Math.pow(end[0] - start[0], 2) +
-        Math.pow(end[1] - start[1], 2) +
-        Math.pow(end[2] - start[2], 2)
-    );
-
-    // Position and orient the cylinder on mount and when props change - moved before conditional return
-    useEffect(() => {
-        if (groupRef.current) {
-            // Position at midpoint
-            groupRef.current.position.set(midX, midY, midZ);
-
-            // Calculate direction vector
-            const direction = new THREE.Vector3(
-                end[0] - start[0],
-                end[1] - start[1],
-                end[2] - start[2]
-            ).normalize();
-
-            // Default cylinder orientation is along y-axis
-            const yAxis = new THREE.Vector3(0, 1, 0);
-
-            // Get the quaternion that rotates y-axis to match our direction
-            const quaternion = new THREE.Quaternion();
-            quaternion.setFromUnitVectors(yAxis, direction);
-
-            // Apply the rotation
-            groupRef.current.setRotationFromQuaternion(quaternion);
-        }
-    }, [start, end, midX, midY, midZ]);
-
     if (!visible) return null;
 
     return (
-        <group ref={groupRef}>
-            <mesh>
-                <cylinderGeometry args={[0.05, 0.05, distance, 8]} />
-                <meshBasicMaterial color="#f4d06f" opacity={0.4} transparent={true} />
-            </mesh>
-        </group>
+        <Line
+            points={[start, end]}
+            color="#f4d06f"
+            transparent
+            opacity={0.6}
+        />
     );
 }
 
@@ -158,9 +94,9 @@ function Scene({ friends, selectedTags }: { friends: Friend[], selectedTags: str
         // If no tags selected, show all friends
         if (selectedTags.length === 0) return { ...friend, visible: true };
 
-        // Check if friend has at least one of the selected tags
-        const hasTag = selectedTags.some(tag => friend.tags.includes(tag));
-        return { ...friend, visible: hasTag };
+        // Show a friend if they have ANY of the selected tags (OR logic)
+        const hasAnySelectedTag = selectedTags.some(tag => friend.tags.includes(tag));
+        return { ...friend, visible: hasAnySelectedTag };
     });
 
     // Create connections between nodes based on shared tags
@@ -188,7 +124,7 @@ function Scene({ friends, selectedTags }: { friends: Friend[], selectedTags: str
     // Handle clicking on a friend node - redirect to the specified link
     const handleNodeClick = (link: string) => {
         if (link) {
-            window.open(link, '_blank');
+            window.location.href = link;
         }
     };
 
@@ -226,148 +162,52 @@ function Scene({ friends, selectedTags }: { friends: Friend[], selectedTags: str
     );
 }
 
+// Distribute points on a sphere for even spacing with slight jitter
+function generateFibonacciPosition(index: number, total: number, radius: number = 7): [number, number, number] {
+    const goldenAngle = Math.PI * (3 - Math.sqrt(5));
+    const t = index + 0.5;
+    const y = 1 - (t * 2) / total; // from 1 to -1
+    const r = Math.sqrt(1 - y * y);
+    const theta = goldenAngle * t;
+    const x = Math.cos(theta) * r;
+    const z = Math.sin(theta) * r;
+
+    // small random jitter so layout isn't too rigid
+    const jitter = 0.35;
+    const jx = (Math.random() - 0.5) * jitter;
+    const jy = (Math.random() - 0.5) * jitter;
+    const jz = (Math.random() - 0.5) * jitter;
+
+    return [
+        (x + jx) * radius,
+        (y + jy) * radius,
+        (z + jz) * radius
+    ];
+}
+
 export default function FriendsPage() {
     const [selectedTags, setSelectedTags] = useState<string[]>([]);
     const [friends, setFriends] = useState<Friend[]>([]);
     const [allTags, setAllTags] = useState<string[]>([]);
 
-    // Color palette that matches the website theme
-    const colorPalette = useMemo(() => {
-        return ['#f4d06f', '#e28f83', '#e4c1b3', '#d8a28c', '#fceadd'];
-    }, []);
-
     // Sample friends data with dynamically assigned colors and links
     useEffect(() => {
-        const friendsData: Friend[] = [
-            {
-                id: 1,
-                name: "Alex Johnson",
-                tags: ["college", "tech", "gaming"],
-                position: [-5, 0, 3],
-                color: colorPalette[0],
-                link: "https://github.com/alexjohnson"
-            },
-            {
-                id: 2,
-                name: "Sarah Lee",
-                tags: ["design", "art", "college"],
-                position: [4, 2, -2],
-                color: colorPalette[1],
-                link: "https://dribbble.com/sarahlee"
-            },
-            {
-                id: 3,
-                name: "Mike Chen",
-                tags: ["music", "tech", "startup"],
-                position: [0, -3, 5],
-                color: colorPalette[2],
-                link: "https://soundcloud.com/mikechen"
-            },
-            {
-                id: 4,
-                name: "Priya Patel",
-                tags: ["travel", "photography", "startup"],
-                position: [6, 0, 0],
-                color: colorPalette[3],
-                link: "https://instagram.com/priyapatel"
-            },
-            {
-                id: 5,
-                name: "David Kim",
-                tags: ["sports", "gaming", "college"],
-                position: [-3, 4, -3],
-                color: colorPalette[4],
-                link: "https://twitch.tv/davidkim"
-            },
-            {
-                id: 6,
-                name: "Emma Wilson",
-                tags: ["art", "music", "writing"],
-                position: [2, -2, -6],
-                color: colorPalette[0],
-                link: "https://medium.com/@emmawilson"
-            },
-            {
-                id: 7,
-                name: "Carlos Rodriguez",
-                tags: ["tech", "startup", "travel"],
-                position: [-6, -1, -2],
-                color: colorPalette[1],
-                link: "https://linkedin.com/in/carlosrodriguez"
-            },
-            // Additional nodes
-            {
-                id: 8,
-                name: "Lena Park",
-                tags: ["fashion", "photography", "travel"],
-                position: [5, -5, 1],
-                color: colorPalette[2],
-                link: "https://pinterest.com/lenapark"
-            },
-            {
-                id: 9,
-                name: "Tom Wilson",
-                tags: ["tech", "gaming", "movies"],
-                position: [-2, 1, 6],
-                color: colorPalette[3],
-                link: "https://twitter.com/tomwilson"
-            },
-            {
-                id: 10,
-                name: "Jasmine Chu",
-                tags: ["food", "travel", "photography"],
-                position: [3, 5, 2],
-                color: colorPalette[4],
-                link: "https://instagram.com/jasmine.chu"
-            },
-            {
-                id: 11,
-                name: "Raj Patel",
-                tags: ["finance", "tech", "startup"],
-                position: [-4, -4, -3],
-                color: colorPalette[0],
-                link: "https://linkedin.com/in/rajpatel"
-            },
-            {
-                id: 12,
-                name: "Sophie Brown",
-                tags: ["science", "books", "tech"],
-                position: [7, 2, -4],
-                color: colorPalette[1],
-                link: "https://researchgate.net/profile/sophiebrown"
-            },
-            {
-                id: 13,
-                name: "Daniel Garcia",
-                tags: ["music", "art", "photography"],
-                position: [0, 6, -4],
-                color: colorPalette[2],
-                link: "https://spotify.com/artist/danielgarcia"
-            },
-            {
-                id: 14,
-                name: "Maya Johnson",
-                tags: ["design", "fashion", "art"],
-                position: [-7, 3, 0],
-                color: colorPalette[3],
-                link: "https://behance.net/mayajohnson"
-            },
-            {
-                id: 15,
-                name: "Kai Zhang",
-                tags: ["tech", "science", "gaming"],
-                position: [4, -3, -5],
-                color: colorPalette[4],
-                link: "https://github.com/kaizhang"
-            }
-        ];
-
-        setFriends(friendsData);
+        const base = friendsData as unknown as Omit<Friend, 'position'>[];
+        const positioned: Friend[] = base.map((f, i) => ({
+            id: f.id,
+            name: f.name,
+            tags: f.tags,
+            color: f.color,
+            link: f.link,
+            image: (f as any).image,
+            position: generateFibonacciPosition(i, base.length)
+        }));
+        setFriends(positioned);
 
         // Extract all unique tags
-        const tags = Array.from(new Set(friendsData.flatMap(friend => friend.tags)));
+        const tags = Array.from(new Set(base.flatMap(friend => friend.tags)));
         setAllTags(tags);
-    }, [colorPalette]);
+    }, []);
 
     // Toggle tag selection
     const toggleTag = (tag: string) => {
