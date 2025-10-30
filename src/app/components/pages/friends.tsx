@@ -123,12 +123,7 @@ function Scene({ friends, selectedTags }: { friends: Friend[], selectedTags: str
         }
     }
 
-    // Handle clicking on a friend node - redirect to the specified link
-    const handleNodeClick = (link: string) => {
-        if (link) {
-            window.location.href = link;
-        }
-    };
+    // Note: clicks are handled via anchor links inside FriendNode
 
     return (
         <>
