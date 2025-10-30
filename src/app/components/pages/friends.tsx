@@ -1,11 +1,12 @@
 "use client"
 
-import { useState, useEffect, useRef, useMemo } from "react";
+import { useState, useEffect, useRef } from "react";
 import styles from "../../styles/pages/friends.module.css";
 import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls, Html, Line } from '@react-three/drei';
 import * as THREE from 'three';
 import { friendsData } from "../../friendsdata/data";
+import Image from "next/image";
 
 // Define the Friend interface with link property
 interface Friend {
@@ -19,10 +20,9 @@ interface Friend {
 }
 
 // Node component that uses SVG texture
-function FriendNode({ friend, isVisible, onClick }: {
+function FriendNode({ friend, isVisible }: {
     friend: Friend,
     isVisible: boolean,
-    onClick: (link: string) => void
 }) {
     const groupRef = useRef<THREE.Group>(null);
 
@@ -53,7 +53,9 @@ function FriendNode({ friend, isVisible, onClick }: {
                     style={{ textDecoration: 'none' }}
                 >
                     <div style={{ display: 'flex', alignItems: 'stretch', width: '280px', background: '#fff7f4', border: '1px solid #ead9d1', borderRadius: '10px', overflow: 'hidden', boxShadow: '0 2px 6px rgba(0,0,0,0.06)' }}>
-                        <img src={friend.image} alt={friend.name} style={{ width: '50%', height: '100%', objectFit: 'cover' }} />
+                        <div style={{ position: 'relative', width: '50%', height: '100%' }}>
+                            <Image src={friend.image} alt={friend.name} fill style={{ objectFit: 'cover' }} />
+                        </div>
                         <div style={{ padding: '8px 10px', display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: '6px', width: '50%' }}>
                             <div className={styles.friend_name}>{friend.name}</div>
                             <div className={styles.friend_tags}>
@@ -138,7 +140,6 @@ function Scene({ friends, selectedTags }: { friends: Friend[], selectedTags: str
                     key={friend.id}
                     friend={friend}
                     isVisible={friend.visible}
-                    onClick={handleNodeClick}
                 />
             ))}
 
@@ -199,7 +200,7 @@ export default function FriendsPage() {
             tags: f.tags,
             color: f.color,
             link: f.link,
-            image: (f as any).image,
+            image: f.image,
             position: generateFibonacciPosition(i, base.length)
         }));
         setFriends(positioned);

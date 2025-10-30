@@ -59,7 +59,7 @@ export default function HomePage({ setCurrentPage }: HomePageProps) {
             window.removeEventListener('pointerdown', onFirstInteraction);
             window.removeEventListener('keydown', onFirstInteraction);
         };
-    }, []);
+    }, [muted]);
 
     // Keep audio muted state in sync when toggled
     useEffect(() => {
