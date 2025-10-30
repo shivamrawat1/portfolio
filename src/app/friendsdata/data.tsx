@@ -53,7 +53,7 @@ export const friendsData = [
         tags: ["Travel", "Technology", "Sports", "Nature", "Social Good"],
         color: "#fceadd",
         link: "https://www.linkedin.com/in/jeevancs/",
-        image: "/headshots/Jeevan Bhatta.jpeg"
+        image: "/headshots/Jeevan Bhatta.jpg"
     }
 ];
 
