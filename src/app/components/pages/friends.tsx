@@ -53,8 +53,8 @@ function FriendNode({ friend, isVisible }: {
                     style={{ textDecoration: 'none' }}
                 >
                     <div style={{ display: 'flex', alignItems: 'stretch', width: '280px', background: '#fff7f4', border: '1px solid #ead9d1', borderRadius: '10px', overflow: 'hidden', boxShadow: '0 2px 6px rgba(0,0,0,0.06)' }}>
-                        <div style={{ position: 'relative', width: '50%', height: '100%' }}>
-                            <Image src={friend.image} alt={friend.name} fill style={{ objectFit: 'cover' }} />
+                        <div style={{ position: 'relative', width: '50%', height: '100%', minHeight: 120 }}>
+                            <Image src={friend.image} alt={friend.name} width={140} height={120} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                         </div>
                         <div style={{ padding: '8px 10px', display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: '6px', width: '50%' }}>
                             <div className={styles.friend_name}>{friend.name}</div>
