@@ -151,6 +151,22 @@ export const friendsData = [
         link: "https://thu-portfolio-five.vercel.app/",
         image: "/headshots/Thu Than.jpeg"
     },
+    {
+        id: 20,
+        name: "Koosha Azim",
+        tags: ["Technology", "Music", "Art", "Writing", "Social Media"],
+        color: "#fceadd",
+        link: "https://kooshaazim.com/",
+        image: "/headshots/Koosha Azim.jpeg"
+    },
+    {
+        id: 21,
+        name: "Dimitar Ivanov",
+        tags: ["Entertainment", "Sports", "Nature", "Finance", "Science"],
+        color: "#fceadd",
+        link: "https://www.linkedin.com/in/dimitar-n-ivanov",
+        image: "/headshots/Dimitar Ivanov.jpg"
+    }
 ];
 
 
